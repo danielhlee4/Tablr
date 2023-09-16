@@ -66,10 +66,9 @@ export const logout = () => async (dispatch) => {
   return response;
 };
 
-const initialState = { user: null };
-// { 
-//   user: JSON.parse(sessionStorage.getItem("currentUser"))
-// };
+const initialState = { 
+  user: JSON.parse(sessionStorage.getItem("currentUser"))
+};
 
 const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
