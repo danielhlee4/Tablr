@@ -1,3 +1,35 @@
 .profile-dropdown {
     position: absolute;
   }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  background-color: #247f9e;
+  color: white;
+  font-size: 14px;
+  border-width: 0;
+  cursor: pointer;
+  border-radius: 0.18rem;
+  padding: 0px 16px;
+  margin: 3px;
+  height: 30px;
+}
+
+.logged-out {
+
+}
+
+.logged-in {
+  /* Add your styles for logged-in users here */
+}
