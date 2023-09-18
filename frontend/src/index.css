@@ -1,1 +1,11 @@
 /* TODO Add site wide styles */
+@font-face {
+    font-family: 'BrandonText';
+    src: local('BrandonText'), 
+    url(./fonts/BrandonText-Regular.otf) 
+    format('opentype');
+  }
+
+body {
+    font-family: 'BrandonText', sans-serif;
+}

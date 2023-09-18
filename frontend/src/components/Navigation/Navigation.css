@@ -6,6 +6,8 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  /* display: flex;
+  align-items: center; */
 }
 
 header {
@@ -14,22 +16,42 @@ header {
   align-items: center;
 }
 
-button {
+.right-nav {
+  display: flex;
+  align-items: center;
+}
+
+#sign-in, #sign-up {
   background-color: #247f9e;
   color: white;
+  font: inherit;
   font-size: 14px;
   border-width: 0;
   cursor: pointer;
   border-radius: 0.18rem;
   padding: 0px 16px;
   margin: 3px;
-  height: 30px;
+  height: 35px;
 }
 
-.logged-out {
+.search {
+  border-left: 1px solid #d8d9db;
+  padding: 10px;
+  margin: 0px 5px;
+}
+
+.profile-button {
+  margin: 0px 5px;
+}
+
+.fa-magnifying-glass, .fa-utensils {
+  font-size: 20px;
+}
+
+/* .logged-out {
 
 }
 
 .logged-in {
-  /* Add your styles for logged-in users here */
-}
+
+} */

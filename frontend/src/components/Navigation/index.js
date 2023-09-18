@@ -35,10 +35,13 @@ function Navigation() {
           </li>
         </ul>
       </nav>
-      <nav className="right-nav">
-        <ul>
+      <nav>
+        <ul className="right-nav">
           <li className="session-links">
             {sessionLinks}
+          </li>
+          <li className="search">
+            <i className="fa-solid fa-magnifying-glass"></i>
           </li>
         </ul>
       </nav>
