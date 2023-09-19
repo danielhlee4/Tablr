@@ -4,13 +4,20 @@ import './Footer.css';
 function Footer() {
   return (
     <footer className="footer">
-        <div class="footer-content">
+        <div className="footer-content">
             <ul>
-                <li><a href="/about">About Us</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/privacy-policy">Privacy Policy</a></li>
+                <li id="title">Come visit me on:</li>
+                <li>
+                    <a href="https://www.linkedin.com">LinkedIn</a>
+                </li>
+                <li>
+                    <a href="https://www.github.com">GitHub</a>
+                </li>
+                <li>
+                    <a href="https://www.wellfound.com">Wellfound</a>
+                </li>
+                <li>&copy; 2023 Tablr</li>
             </ul>
-            <p>&copy; 2023 Tablr</p>
         </div>
     </footer>
   );
