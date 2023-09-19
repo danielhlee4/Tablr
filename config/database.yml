@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: tablr_production
-  username: tablr
-  password: <%= ENV["TABLR_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
