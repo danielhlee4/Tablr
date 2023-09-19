@@ -38,7 +38,8 @@ function ProfileButton({ user }) {
       {showMenu && (
         <div className="profile-dropdown-container">
           <ul className="profile-dropdown">
-            <li>Hello, {user.firstName}!</li>
+            <li id="greeting">Hello, {user.firstName}!</li>
+            <div id="divider"></div>
             <li>
               <a href="https://www.linkedin.com">My LinkedIn</a>
             </li>

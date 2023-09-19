@@ -1,6 +1,5 @@
 .profile {
   position: relative;
-  margin-right: 12px;
 }
 
 .profile-dropdown {
@@ -20,7 +19,21 @@
   font-size: 16px;
   color: #2d333f;
   background-color: white;
-  padding: 4px 0px;
+  padding: 8px 0px;
+}
+
+.profile-dropdown a,
+.profile-dropdown button {
+  font-weight: 300;
+}
+
+#greeting {
+  font-weight: 700;
+}
+
+#divider {
+  border-top: #d8d9db;
+  height: 1px;
 }
 
 .profile-dropdown button {
@@ -76,7 +89,7 @@ header {
 }
 
 .session-links {
-  margin-right: 12px;
+  margin-right: 14px;
 }
 
 #sign-in, #sign-up {

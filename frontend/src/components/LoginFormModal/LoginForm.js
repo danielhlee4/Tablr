@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import './LoginForm.css';
@@ -27,6 +28,10 @@ function LoginForm() {
       });
   };
 
+  const handleDemoLogin = e => {
+    dispatch(sessionActions.login({ email: 'demo@user.io', password: 'password' }))
+  }
+
   return (
     <form id="login-form" onSubmit={handleSubmit}>
       <div id="login-credentials-container">
@@ -48,6 +53,9 @@ function LoginForm() {
           required
         />
         <button type="submit">Continue</button>
+        <div id="demo-container">
+          <Link id="demo-user" to="/" onClick={handleDemoLogin}>Continue as Demo User</Link>
+        </div>
       </div>
     </form>
   );

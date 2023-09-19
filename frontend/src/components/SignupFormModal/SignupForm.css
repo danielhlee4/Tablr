@@ -52,6 +52,7 @@
 #signup-credentials-container input[type="password"] {
     font-size: 15px;
     font: inherit;
+    font-weight: 300;
     padding-left: 10px;
 }
 
@@ -59,6 +60,7 @@
     font-size: 15px;
     color: white;
     font: inherit;
+    font-weight: 700;
 }
 
 #signup-credentials-container button[type="submit"]:active {

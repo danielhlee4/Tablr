@@ -75,7 +75,7 @@ function SignupForm() {
           onChange={(e) => setLastName(e.target.value)}
           required
         />
-        <button type="submit">Sign In</button>
+        <button type="submit">Continue</button>
       </div>
     </form>
   );

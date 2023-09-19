@@ -53,12 +53,14 @@
     font-size: 15px;
     font: inherit;
     padding-left: 10px;
+    font-weight: 300;
 }
 
 #login-credentials-container button[type="submit"] {
     font-size: 15px;
     color: white;
     font: inherit;
+    font-weight: 700;
 }
 
 #login-credentials-container button[type="submit"]:active {
@@ -68,4 +70,24 @@
 
 #errors {
     color: #da3743;
+}
+
+#demo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#demo-user {
+    text-decoration: none;
+    color: #da3743;
+    font-weight: 400;
+}
+
+#demo-user:hover {
+    text-decoration: underline;
+}
+
+#demo-user:active {
+    color: #99151e;
 }
