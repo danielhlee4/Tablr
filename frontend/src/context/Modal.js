@@ -33,9 +33,7 @@ export function Modal({ onClose, children }) {
         <div id="modal-close-button-container">
           <button id="modal-close-button" onClick={onClose}>X</button>
         </div>
-        <div id="modal-credentials-container">
-          {children}
-        </div>
+        {children}
       </div>
     </div>,
     modalNode

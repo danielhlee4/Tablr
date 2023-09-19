@@ -28,10 +28,11 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map(error => <li key={error}>{error}</li>)}
-      </ul>
+    <form id="login-form" onSubmit={handleSubmit}>
+      <div id="login-credentials-container">
+        <ul>
+          {errors.map(error => <li key={error}>{error}</li>)}
+        </ul>
         <input
           type="text"
           placeholder="Email"
@@ -46,7 +47,8 @@ function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-      <button type="submit">Continue</button>
+        <button type="submit">Continue</button>
+      </div>
     </form>
   );
 }

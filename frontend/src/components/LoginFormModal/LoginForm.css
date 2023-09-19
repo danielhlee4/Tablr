@@ -3,5 +3,65 @@
     width: 465px;
     border-radius: 0.25rem;
     background-color: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+#modal-close-button-container {
+    display: grid;
+    grid-template-columns: 85% 10% 5%;
+    grid-template-rows: 50% 50%;
+    height: 55px;
+}
+
+#modal-close-button {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    border: none;
+    background-color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+#login-form {
+    height: 400px;
+}
+
+#login-credentials-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 65px;
+}
+
+#login-credentials-container > * {
+    margin: 5px 20px;
+    height: 45px;
+}
+
+#login-credentials-container input {
+    border: 1px solid #d8d9db;
+    border-radius: 4px;
+}
+
+#login-credentials-container button {
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #da3743;
+}
+
+#login-credentials-container input[type="text"],
+#login-credentials-container input[type="password"] {
+    font-size: 15px;
+    font: inherit;
+    padding-left: 10px;
+}
+
+#login-credentials-container button[type="submit"] {
+    font-size: 15px;
+    color: white;
+    font: inherit;
+}
+
+#login-credentials-container button[type="submit"]:active {
+    background-color: rgb(241, 242, 244); /* Color when the button is clicked */
+    color: rgb(111, 115, 123);
 }
