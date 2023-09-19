@@ -1,0 +1,7 @@
+#modal-content {
+    height: 670px;
+    width: 465px;
+    border-radius: 0.25rem;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}

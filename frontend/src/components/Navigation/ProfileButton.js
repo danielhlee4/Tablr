@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 
@@ -30,30 +29,32 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <>
-      <div className="profile-button">
-        <button onClick={openMenu}>
+    <div className="profile">
+      <div className="profile-button-container">
+        <button id ="profile-button" onClick={openMenu}>
           <i className="fa-solid fa-utensils"></i>
         </button>
       </div>
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>Hello, {user.firstName}!</li>
-          <li>
-            <a href="https://www.linkedin.com">My LinkedIn</a>
-          </li>
-          <li>
-            <a href="https://www.github.com">My GitHub</a>
-          </li>
-          <li>
-            <a href="https://www.wellfound.com">My Wellfound</a>
-          </li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+        <div className="profile-dropdown-container">
+          <ul className="profile-dropdown">
+            <li>Hello, {user.firstName}!</li>
+            <li>
+              <a href="https://www.linkedin.com">My LinkedIn</a>
+            </li>
+            <li>
+              <a href="https://www.github.com">My GitHub</a>
+            </li>
+            <li>
+              <a href="https://www.wellfound.com">My Wellfound</a>
+            </li>
+            <li>
+              <button onClick={logout}>Log Out</button>
+            </li>
+          </ul>
+        </div>
       )}
-    </>
+    </div>
   );
 }
 
