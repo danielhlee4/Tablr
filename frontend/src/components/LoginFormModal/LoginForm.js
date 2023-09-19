@@ -30,7 +30,7 @@ function LoginForm() {
   return (
     <form id="login-form" onSubmit={handleSubmit}>
       <div id="login-credentials-container">
-        <ul>
+        <ul id="errors">
           {errors.map(error => <li key={error}>{error}</li>)}
         </ul>
         <input

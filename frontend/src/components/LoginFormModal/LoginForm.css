@@ -65,3 +65,7 @@
     background-color: rgb(241, 242, 244); /* Color when the button is clicked */
     color: rgb(111, 115, 123);
 }
+
+#errors {
+    color: #da3743;
+}

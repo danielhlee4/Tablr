@@ -40,41 +40,43 @@ function SignupForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error) => (
-          <li key={error}>{error}</li>
-        ))}
-      </ul>
-      <input
-        type="text"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="First Name"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Last Name"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        required
-      />
-      <button type="submit">Sign In</button>
+    <form id="signup-form" onSubmit={handleSubmit}>
+      <div id="signup-credentials-container">
+        <ul id="errors">
+          {errors.map((error) => (
+            <li key={error}>{error}</li>
+          ))}
+        </ul>
+        <input
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          required
+        />
+        <button type="submit">Sign In</button>
+      </div>
     </form>
   );
 }

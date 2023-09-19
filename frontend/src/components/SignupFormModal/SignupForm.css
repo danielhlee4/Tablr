@@ -1,0 +1,71 @@
+#modal-content {
+    height: 670px;
+    width: 465px;
+    border-radius: 0.25rem;
+    background-color: white;
+}
+
+#modal-close-button-container {
+    display: grid;
+    grid-template-columns: 85% 10% 5%;
+    grid-template-rows: 50% 50%;
+    height: 55px;
+}
+
+#modal-close-button {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    border: none;
+    background-color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+#signup-form {
+    height: 400px;
+}
+
+#signup-credentials-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 65px;
+}
+
+#signup-credentials-container > * {
+    margin: 5px 20px;
+    height: 45px;
+}
+
+#signup-credentials-container input {
+    border: 1px solid #d8d9db;
+    border-radius: 4px;
+}
+
+#signup-credentials-container button {
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #da3743;
+}
+
+#signup-credentials-container input[type="text"],
+#signup-credentials-container input[type="password"] {
+    font-size: 15px;
+    font: inherit;
+    padding-left: 10px;
+}
+
+#signup-credentials-container button[type="submit"] {
+    font-size: 15px;
+    color: white;
+    font: inherit;
+}
+
+#signup-credentials-container button[type="submit"]:active {
+    background-color: rgb(241, 242, 244); /* Color when the button is clicked */
+    color: rgb(111, 115, 123);
+}
+
+#errors {
+    color: #da3743;
+}
