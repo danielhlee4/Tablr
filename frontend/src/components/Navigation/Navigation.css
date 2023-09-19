@@ -1,5 +1,6 @@
 .profile {
   position: relative;
+  margin-right: 12px;
 }
 
 .profile-dropdown {
@@ -61,11 +62,21 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 7px;
 }
 
 .right-nav {
   display: flex;
   align-items: center;
+  margin-right: 25px;
+}
+
+.left-nav {
+  margin-left: 30px;
+}
+
+.session-links {
+  margin-right: 12px;
 }
 
 #sign-in, #sign-up {
@@ -83,7 +94,7 @@ header {
 
 .search {
   border-left: 1px solid #d8d9db;
-  padding: 10px;
+  padding: 10px 18px;
   margin: 0px 5px;
 }
 
