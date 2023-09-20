@@ -27,5 +27,5 @@ class Restaurant < ApplicationRecord
     validates :neighborhood,
         inclusion: { in: ["East Village", "Union Square", "Hell's Kitchen"], message: "%{value} is not a valid neighborhood" }
     validates :phone,
-        inclusion: { is: 14 }
+        length: { is: 14 }
 end
