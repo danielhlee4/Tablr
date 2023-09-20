@@ -63,8 +63,12 @@
     font-weight: 700;
 }
 
+#signup-credentials-container button[type="submit"]:hover {
+    background-color: #99151e;
+}
+
 #signup-credentials-container button[type="submit"]:active {
-    background-color: rgb(241, 242, 244); /* Color when the button is clicked */
+    background-color: rgb(241, 242, 244);
     color: rgb(111, 115, 123);
 }
 

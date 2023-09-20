@@ -1,31 +1,27 @@
 footer {
     background-color: #2d333f;
-    color: #fff;
+    color: #ffffff;
     padding: 20px;
-    text-align: center;
+    text-align: left;
     position: absolute;
     bottom: 0;
     width: 100%;
     display: grid;
     grid-template-columns: 20% 20% 60%;
     font-weight: 200;
-    /* font-size: ; */
 }
 
 footer a {
-    color: #fff;
-    /* font-weight: 200; */
+    color: #b5b5b5;
     text-decoration: none;
 }
 
 footer a:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 0.5px;
+    color: #ffffff;
 }
 
 .footer-content {
     grid-column-start: 2;
-    text-align: left;
 }
 
 .footer-content li {
