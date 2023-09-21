@@ -16,7 +16,7 @@ export const receiveRestaurant = restaurant => {
     }
 };
 
-// selectors
+// Selectors
 export const getRestaurant = restaurantId => {
     return state => {
         if (state.restaurants) return state.restaurants[restaurantId];
@@ -47,3 +47,20 @@ export const fetchRestaurant = restaurantId => async dispatch => {
         dispatch(receiveRestaurant(restaurant));
     }
 }
+
+// Reducer
+const restaurantsReducer = (state = {}, action) => {
+    const nextState = { ...state }
+
+    switch (action.type) {
+        case RECEIVE_RESTAURANTS:
+            return { ...action.restaurants };
+        case RECEIVE_RESTAURANT:
+            nextState[action.restaurant.id] = action.restaurant;
+            return nextState;
+        default:
+            return state;
+    }
+}
+
+export default restaurantsReducer;
