@@ -15,17 +15,15 @@ function SignupForm() {
 
   if (sessionUser) return <Redirect to="/" />;
 
-  const snakeCaseParams = {
-    email,
-    password,
-    first_name: firstName,
-    last_name: lastName
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.signup(snakeCaseParams))
+    return dispatch(sessionActions.signup({
+      email,
+      password,
+      firstName,
+      lastName
+    }))
       .catch(async (res) => {
         let data;
         try {
