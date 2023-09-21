@@ -4,7 +4,8 @@ import session from './session'
 import restaurantsReducer from './restaurants';
 
 const rootReducer = combineReducers({
-  session
+  session,
+  restaurants: restaurantsReducer
 });
 
 let enhancer;
