@@ -48,7 +48,7 @@ ApplicationRecord.transaction do
     Restaurant.create!(
       name: 'The Ready Rooftop Bar',
       description: 'Located in the heart of the East Village at the top of the Moxy East Village The Ready is an all-season rooftop oasis perfect for after-work drinks, weekend revelry and private events. Collegial yet refined, The Ready at Moxy East Village feels like an escape from the New York daily grind. The eclectic décor (string lights, a vine-strewn mural, a bar made of plastic milk crates) and unique food and beverage offerings create a relaxed rooftop experience—like a coveted New York City backyard. The retractable glass walls and roof allow for all-season panoramic views of the East Village and beyond.',
-      cuisine: 'Bar / Lounge / Bottle Service',
+      cuisine: 'Bar / Lounge',
       expense: '$$',
       price_range: '$31 to $50',
       neighborhood: "East Village",

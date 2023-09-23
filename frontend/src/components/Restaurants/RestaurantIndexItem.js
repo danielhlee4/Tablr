@@ -8,14 +8,25 @@ function RestaurantIndexItem({ restaurant }) {
             <div className="image-container">
                 <img src={badroman} alt="Bad Roman"/>
             </div>
-            <h2>{restaurant.name}</h2>
-            <div className="inline-ratings-reviews">
+            <div className="text-container">
+                <h2 id="restaurant-name">{restaurant.name}</h2>
+                <div>Rating / Reviews placeholder</div>
+                <div className="inline-ratings-reviews">
 
-            </div>
-            <div className="inline-description">
-                <span>{restaurant.cuisine}</span>
-                <span>{restaurant.expense}</span>
-                <span>{restaurant.neighborhood}</span>
+                </div>
+                <div className="inline-description">
+                    <span>{restaurant.cuisine}</span>
+                    <span className="expense-container">
+                        <span className={restaurant.expense.length >= 1 ? "active" : "inactive"}>$</span>
+                        <span className={restaurant.expense.length >= 2 ? "active" : "inactive"}>$</span>
+                        <span className={restaurant.expense.length >= 3 ? "active" : "inactive"}>$</span>
+                        <span className={restaurant.expense.length >= 4 ? "active" : "inactive"}>$</span>
+                    </span>
+                    <span>{restaurant.neighborhood}</span>
+                </div>
+                <div>
+                    Reservations placeholder
+                </div>
             </div>
         </Link>
     )
