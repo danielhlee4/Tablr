@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RestaurantIndexItem from './RestaurantIndexItem';
 import { getRestaurants, fetchRestaurants } from '../../store/restaurants';
+import './Restaurants.css';
 
 function RestaurantIndex() {
     const restaurants = useSelector(getRestaurants);
@@ -14,7 +15,7 @@ function RestaurantIndex() {
     return (
         <>
             <h1>Time to eat</h1>
-            <ul>
+            <ul className="carousel">
                 {restaurants.map(restaurant => {
                     return <RestaurantIndexItem key={restaurant.id} restaurant={restaurant} />
                 })}
