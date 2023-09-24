@@ -76,12 +76,13 @@ header {
   justify-content: space-between;
   align-items: center;
   margin-top: 7px;
+  width: 100%;
 }
 
 .right-nav {
   display: flex;
   align-items: center;
-  margin-right: 25px;
+  margin-right: 30px;
 }
 
 .left-nav {
@@ -123,11 +124,3 @@ header {
 .fa-magnifying-glass, .fa-utensils {
   font-size: 20px;
 }
-
-/* .logged-out {
-
-}
-
-.logged-in {
-
-} */

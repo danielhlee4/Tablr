@@ -25,7 +25,7 @@ function Navigation() {
   }
 
   return (
-    <header className={sessionUser ? 'logged-in' : 'logged-out'}>
+    <header>
       <nav className="left-nav">
         <ul>
           <li>

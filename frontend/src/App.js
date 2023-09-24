@@ -8,14 +8,14 @@ import RestaurantShow from './components/Restaurants/RestaurantShow';
 function App() {
   return (
     <>
-      <Navigation />
-      <div className='container'>
-        <Switch>
-          <Route exact path="/" component={RestaurantIndex} />
-          <Route exact path="/restaurants/:restaurantId" component={RestaurantShow} />
-        </Switch>
-      </div>
-      <Footer />
+        <Navigation />
+        <div className='container'>
+          <Switch>
+            <Route exact path="/" component={RestaurantIndex} />
+            <Route exact path="/restaurants/:restaurantId" component={RestaurantShow} />
+          </Switch>
+        </div>  
+        <Footer />
     </>
   );
 }

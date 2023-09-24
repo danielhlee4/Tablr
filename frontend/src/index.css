@@ -39,7 +39,15 @@ body {
 }
 
 .container {
-  max-width: 1200px; /* Adjust the maximum width as needed */
-  margin: 0 auto; /* Horizontally center the container */
-  padding: 0 20px; /* Apply padding to create equal space on left and right */
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
+
+/* @media (max-width: 1440px) {
+  .container {
+    max-width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+} */
