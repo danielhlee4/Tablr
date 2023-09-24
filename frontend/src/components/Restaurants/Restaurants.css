@@ -84,8 +84,13 @@ h1 {
     color: #2d333f;
 }
 
+.carousel-wrapper {
+    margin: 25px 0px;
+}
+
 .carousel {
     width: 1260px;
+    margin: 15px 0px 20px 0px;
 }
 
 .restaurant-container.raised {
