@@ -1,10 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import badroman from '../../assets/badroman.webp'
 
 function RestaurantIndexItem({ restaurant }) {
+    const [isRaised, setIsRaised] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
+
+    const handleMouseEnter = () => {
+        setIsRaised(true);
+    };
+    
+    const handleMouseLeave = () => {
+        setIsRaised(false);
+    };
+    
+    const handleClick = () => {
+        setIsClicked(!isClicked);
+    };
+
+    const containerClasses = `restaurant-container ${isRaised ? 'raised' : ''} ${isClicked ? 'clicked' : ''}`;
+
     return (
-        <Link to="/" className="restaurant-container">
+        <Link 
+            to="/"
+            className={containerClasses}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClick={handleClick}
+        >
             <div className="image-container">
                 <img 
                     src={badroman}
