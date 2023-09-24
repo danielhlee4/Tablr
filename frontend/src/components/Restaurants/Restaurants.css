@@ -6,7 +6,7 @@ h1 {
 .restaurant-container {
     display: flex;
     flex-direction: column;
-    width: 240px;
+    width: 234px;
     height: 320px;
     border-radius: 15px;
     border: 1px solid #d8d9db;
@@ -15,7 +15,7 @@ h1 {
 }
   
 .image-container {
-    width: 240px;
+    width: 234px;
     height: 132px;
     display: flex;
     align-items: center;
@@ -81,4 +81,8 @@ h1 {
   
 .expense-container .active {
     color: #2d333f;
+}
+
+.carousel {
+    width: 1260px;
 }

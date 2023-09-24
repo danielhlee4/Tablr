@@ -9,10 +9,12 @@ function App() {
   return (
     <>
       <Navigation />
-      <Switch>
-        <Route exact path="/" component={RestaurantIndex} />
-        <Route exact path="/restaurants/:restaurantId" component={RestaurantShow} />
-      </Switch>
+      <div className='container'>
+        <Switch>
+          <Route exact path="/" component={RestaurantIndex} />
+          <Route exact path="/restaurants/:restaurantId" component={RestaurantShow} />
+        </Switch>
+      </div>
       <Footer />
     </>
   );

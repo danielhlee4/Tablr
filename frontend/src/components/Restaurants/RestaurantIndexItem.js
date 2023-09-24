@@ -6,7 +6,10 @@ function RestaurantIndexItem({ restaurant }) {
     return (
         <Link to="/" className="restaurant-container">
             <div className="image-container">
-                <img src={badroman} alt="Bad Roman"/>
+                <img 
+                    src={badroman}
+                    alt={restaurant.name}
+                />
             </div>
             <div className="text-container">
                 <h2 id="restaurant-name">{restaurant.name}</h2>
