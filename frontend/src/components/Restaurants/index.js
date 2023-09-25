@@ -28,6 +28,7 @@ function RestaurantIndex() {
     return (
       <>
           {neighborhoods.map((neighborhood) => (
+            <div className='index-content'>
               <div key={neighborhood} className='carousel-wrapper'>
                   <h1>{neighborhood}</h1>
                   <Slider {...carouselSettings} className="carousel">
@@ -38,6 +39,7 @@ function RestaurantIndex() {
                           ))}
                   </Slider>
               </div>
+            </div>
           ))}
       </>
   );

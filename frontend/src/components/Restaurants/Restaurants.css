@@ -1,4 +1,10 @@
-h1 {
+.index-content {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.carousel-wrapper h1 {
     font-size: 24px;
     font-weight: 700;
 }
@@ -103,4 +109,12 @@ h1 {
 .restaurant-container:active {
     border: 2px solid #3498db;
     border-radius: 17px 17px 15px 15px;
+}
+
+/* Restaurant Show Page Styling */
+
+.show-restaurant-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
 }

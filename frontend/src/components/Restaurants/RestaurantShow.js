@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRestaurant, fetchRestaurant } from '../../store/restaurants';
+import theready from '../../assets/theready.webp'
 
 function RestaurantShow() {
     const {restaurantId} = useParams();
@@ -18,9 +19,11 @@ function RestaurantShow() {
 
     return (
         <>
-            {/* {restaurant && <h1>{restaurant.name}</h1>} */}
-            <h1>{restaurant.name}</h1>
-            <Link to="/">Restaurant Index</Link>
+            <img
+                className='show-restaurant-image'
+                src={theready}
+                alt={restaurant.name}
+            />
         </>
     );
 }
