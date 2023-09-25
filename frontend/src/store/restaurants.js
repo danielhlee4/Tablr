@@ -20,7 +20,7 @@ export const receiveRestaurant = restaurant => {
 export const getRestaurant = restaurantId => {
     return state => {
         if (state.restaurants) return state.restaurants[restaurantId];
-        return null; 
+        return null;
     }
 }
 
@@ -54,10 +54,10 @@ const restaurantsReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_RESTAURANTS:
-            return { ...action.restaurants };
+            return { ...state, ...action.restaurants };
         case RECEIVE_RESTAURANT:
-            nextState[action.restaurant.id] = action.restaurant;
-            return nextState;
+            // Only modify the specific restaurant by its id
+            return { ...state, [action.restaurant.id]: action.restaurant };
         default:
             return state;
     }

@@ -7,7 +7,7 @@ footer {
     bottom: 0; */
     width: 97.2%;
     display: grid;
-    grid-template-columns: 20% 20% 60%;
+    grid-template-columns: 20% 20% 50%;
     font-weight: 200;
 }
 

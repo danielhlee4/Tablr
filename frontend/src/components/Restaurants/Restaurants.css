@@ -118,3 +118,40 @@
     height: 400px;
     object-fit: cover;
 }
+
+.show-main-content {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 1000px;
+}
+
+.show-overview {
+    width: 608px;
+    height: 3000px;
+    border: 1px solid green;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.show-additional-info {
+    width: 288px;
+    height: 3000px;
+    border: 1px solid green;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+.show-overview,
+.show-additional-info {
+    margin-top: -51px;
+    padding: 0 16px;
+}
+
+.show-overview-info {
+    height: 1000px;
+}
+
+#reviews {
+    height: 1000px;
+}

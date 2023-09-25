@@ -1,12 +1,14 @@
 class Api::RestaurantsController < ApplicationController
+  # wrap_parameters include: Restaurant.attribute_names + ['price_range', 'website_url']
+
   def index
     @restaurants = Restaurant.all
-    render json: @restaurants
+    render :index
   end
 
   def show
-    @restaurant = Restaurant.find_by(id: params[:id])
-    render json: @restaurant
+    @restaurant = Restaurant.find(params[:id])
+    render :show
   end
 
   # private
