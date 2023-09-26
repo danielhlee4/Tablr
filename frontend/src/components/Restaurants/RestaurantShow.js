@@ -14,6 +14,10 @@ function RestaurantShow() {
     const [activeItem, setActiveItem] = useState('overview');
     const overviewRef = useRef(null);
     const reviewsRef = useRef(null);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     
     useEffect(() => {
         dispatch(fetchRestaurant(restaurantId));
