@@ -151,10 +151,6 @@
     height: 500px;
 }
 
-.show-additional-info {
-    border: 1px solid blue;
-}
-
 .navbar {
     height: 50px;
     border-bottom: 1px solid #d8d9db;
@@ -217,4 +213,42 @@
 #show-reviews-title-container {
     padding: 20px 0;
     border-bottom: 1px solid #d8d9db;
+}
+
+/* Restaurant Sidebar Page Styling */
+.show-additional-info {
+    padding-top: 50px;
+}
+
+#show-additional-info-title {
+    font-size: 18px;
+}
+
+.show-info-item {
+    display: flex;
+    margin: 8px 0;
+}
+
+.show-info-item > div {
+    margin-left: 8px;
+}
+
+.show-info-item > span {
+    font-size: 18px;
+    margin-top: 3px
+}
+
+.show-additional-info-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+.show-info-item-text {
+    font-weight: 300;
+    margin-top: 2pxd;
+}
+
+#show-website {
+    word-wrap: break-word;
 }

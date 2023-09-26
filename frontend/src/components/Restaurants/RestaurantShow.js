@@ -87,6 +87,53 @@ function RestaurantShow() {
                 <div className='sidebar'>
                     <ReservationShow />
                     <div className='show-additional-info'>
+                        <h3 id='show-additional-info-title'>Additional information</h3>
+                        <ul className='show-additional-info-list'>
+                            <li>
+                                <div className='show-info-item'>
+                                    <span>
+                                        <i className="fa-light fa-tree-city"></i>
+                                    </span>
+                                    <div>
+                                        <span>Neighborhood</span>
+                                        <div className='show-info-item-text'>{restaurant.neighborhood}</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div className='show-info-item'>
+                                    <span>
+                                        <i className="fa-light fa-plate-utensils"></i>
+                                    </span>
+                                    <div>
+                                        <span>Cuisine</span>
+                                        <div className='show-info-item-text'>{restaurant.cuisine}</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div className='show-info-item'>
+                                    <span>
+                                        <i className="fa-light fa-phone"></i>
+                                    </span>
+                                    <div>
+                                        <span>Phone</span>
+                                        <div className='show-info-item-text'>{restaurant.phone}</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div className='show-info-item'>
+                                    <span>
+                                        <i class="fa-light fa-browser"></i>
+                                    </span>
+                                    <div>
+                                        <span>Website</span>
+                                        <div className='show-info-item-text' id="show-website">{restaurant.websiteUrl}</div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -22,7 +22,7 @@ function RestaurantIndexItem({ restaurant }) {
 
     return (
         <Link 
-            to="/"
+            to={`/restaurants/${restaurant.id}`}
             className={containerClasses}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
