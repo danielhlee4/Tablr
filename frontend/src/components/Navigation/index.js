@@ -41,7 +41,7 @@ function Navigation() {
             {sessionLinks}
           </li>
           <li className="search">
-            <i className="fa-solid fa-magnifying-glass"></i>
+            <i className="fa-duotone fa-magnifying-glass"></i>
           </li>
         </ul>
       </nav>

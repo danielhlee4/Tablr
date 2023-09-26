@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/danielhlee4/Tablr/issues"
   },
-  "homepage": "https://github.com/danielhlee4/Tablr#readme"
+  "homepage": "https://github.com/danielhlee4/Tablr#readme",
+  "dependencies": {
+    "react-scroll": "^1.8.9"
+  }
 }

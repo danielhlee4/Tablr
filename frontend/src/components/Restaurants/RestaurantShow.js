@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { Link, animateScroll as scroll } from 'react-scroll';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRestaurant, fetchRestaurant } from '../../store/restaurants';
@@ -9,8 +10,30 @@ function RestaurantShow() {
     const restaurant = useSelector(getRestaurant(restaurantId));
     const dispatch = useDispatch();
 
+    const [activeItem, setActiveItem] = useState('overview');
+    const overviewRef = useRef(null);
+    const reviewsRef = useRef(null);
+    
     useEffect(() => {
         dispatch(fetchRestaurant(restaurantId));
+
+        const handleScroll = () => {
+            const navbarHeight = 50;
+            const triggerPoint = window.scrollY + navbarHeight;
+        
+            const overviewTop = overviewRef.current.offsetTop;
+            const reviewsTop = reviewsRef.current.offsetTop;
+        
+            if (triggerPoint >= overviewTop && triggerPoint < reviewsTop) {
+                setActiveItem('overview');
+            } else if (triggerPoint >= reviewsTop) {
+                setActiveItem('reviews');
+            }
+        };
+        
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        
+        return () => window.removeEventListener('scroll', handleScroll);
     }, [restaurantId, dispatch]);
 
     if (!restaurant) {
@@ -22,17 +45,46 @@ function RestaurantShow() {
             <img className='show-restaurant-image' src={theready} alt={restaurant.name} />
             <div className='show-main-content'>
                 <div className='show-overview'>
-                    <h1>{restaurant.name}</h1>
-                    <div className='show-overview-info'>
-                        <span>Rating</span>
-                        <span>Num Reviews</span>
-                        <span>{restaurant.priceRange}</span>
-                        <span>{restaurant.cuisine}</span>
+                    <div className='navbar'>
+                        <Link
+                            to="overview-section"
+                            className={activeItem === 'overview' ? 'active' : ''}
+                            onClick={() => scroll.scrollTo(overviewRef.current.offsetTop)}
+                        >
+                            Overview
+                        </Link>
+                        <Link
+                            to="reviews-section"
+                            className={activeItem === 'reviews' ? 'active' : ''}
+                            onClick={() => scroll.scrollTo(reviewsRef.current.offsetTop)}
+                        >
+                            Reviews
+                        </Link>
                     </div>
-                    <h2 className='show-reviews'>What 42 people are saying</h2>
+                    <div ref={overviewRef}>
+                        <div className='show-restaurant-name-container'>
+                            <h1 id='show-restaurant-name'>{restaurant.name}</h1>
+                        </div>
+                        <div className='show-overview-info'>
+                            {/* <span>Rating</span>
+                            <span>Num Reviews</span> */}
+                            <div id='show-overview-bar'>
+                                <i className="fa-light fa-money-bill"></i>
+                                <span>{restaurant.priceRange}</span>
+                                <i className="fa-light fa-plate-utensils"></i>
+                                <span>{restaurant.cuisine}</span>
+                            </div>
+                            <p className='show-description'>{restaurant.description}</p>
+                        </div>
+                    </div>
+                    <div ref={reviewsRef} className='show-reviews'>
+                        <div id='show-reviews-title-container'>
+                            <h2 id='show-reviews-title'>What 42 people are saying</h2>
+                        </div>
+                    </div>
                 </div>
                 <div className='show-additional-info'>
-                    
+                
                 </div>
             </div>
         </>
