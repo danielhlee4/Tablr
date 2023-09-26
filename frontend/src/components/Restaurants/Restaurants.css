@@ -133,24 +133,26 @@
     border: 1px solid green;
     border-radius: 8px;
     background-color: #fff;
+    padding: 0 16px;
 }
 
-.show-additional-info {
-    width: 288px;
+.sidebar {
+    width: 320px;
     height: 3000px;
-    border: 1px solid green;
     border-radius: 8px;
-    background-color: #fff;
 }
 
 .show-overview,
-.show-additional-info {
+.sidebar {
     margin-top: -51px;
-    padding: 0 16px;
 }
 
 .show-overview-info {
     height: 500px;
+}
+
+.show-additional-info {
+    border: 1px solid blue;
 }
 
 .navbar {

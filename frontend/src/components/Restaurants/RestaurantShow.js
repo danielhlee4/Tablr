@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRestaurant, fetchRestaurant } from '../../store/restaurants';
 import theready from '../../assets/theready.webp';
+import ReservationShow from '../Reservations/ReservationShow';
 
 function RestaurantShow() {
     const { restaurantId } = useParams();
@@ -83,8 +84,10 @@ function RestaurantShow() {
                         </div>
                     </div>
                 </div>
-                <div className='show-additional-info'>
-                
+                <div className='sidebar'>
+                    <ReservationShow />
+                    <div className='show-additional-info'>
+                    </div>
                 </div>
             </div>
         </>
