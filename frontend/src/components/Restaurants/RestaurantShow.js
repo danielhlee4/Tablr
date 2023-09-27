@@ -47,7 +47,7 @@ function RestaurantShow() {
 
     return (
         <>
-            <img className='show-restaurant-image' src={theready} alt={restaurant.name} />
+            <img className='show-restaurant-image' src={restaurant.photoUrl} alt={restaurant.name} />
             <div className='show-main-content'>
                 <div className='show-overview'>
                     <div className='navbar'>

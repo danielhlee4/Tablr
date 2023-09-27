@@ -6,6 +6,10 @@ class Api::RestaurantsController < ApplicationController
     render :index
   end
 
+  # def index
+  #   @restaurants = Restaurant.all.sort { |a,b| b.created_at <=> a.created_at }
+  # end
+
   def show
     @restaurant = Restaurant.find(params[:id])
     render :show

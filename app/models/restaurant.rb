@@ -28,4 +28,6 @@ class Restaurant < ApplicationRecord
         inclusion: { in: ["East Village", "Union Square", "Hell's Kitchen"], message: "%{value} is not a valid neighborhood" }
     validates :phone,
         length: { is: 14 }
+
+    has_one_attached :photo
 end

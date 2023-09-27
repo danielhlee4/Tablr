@@ -30,6 +30,7 @@ function RestaurantIndexItem({ restaurant }) {
         >
             <div className="image-container">
                 <img 
+                    // src={restaurant.photoUrl}
                     src={badroman}
                     alt={restaurant.name}
                 />
