@@ -3,14 +3,12 @@ class Api::ReservationsController < ApplicationController
   
     def index
         @reservations = current_user.reservations
-        # render :index
-        render json: @reservations
+        render :index
     end
   
     def show
         @reservation = Reservation.find(params[:id])
-        # render :show
-        render json: @reservation
+        render :show
     end
   
     def create
@@ -18,8 +16,7 @@ class Api::ReservationsController < ApplicationController
         @reservation.user = current_user
     
         if @reservation.save
-            # render :show
-            render json: @reservation
+            render :show
         else
             render json: @reservation.errors.full_messages, status: :unprocessable_entity
         end
@@ -34,8 +31,7 @@ class Api::ReservationsController < ApplicationController
         end
     
         if @reservation.update(reservation_params)
-            # render :show
-            render json: @reservation
+            render :show
         else
             render json: @reservation.errors.full_messages, status: :unprocessable_entity
         end
