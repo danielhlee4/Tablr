@@ -34,6 +34,11 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.1s;
+}
+
+.restaurant-container:hover .image-container img {
+    transform: scale(1.05);
 }
   
 .text-container {

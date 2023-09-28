@@ -49,12 +49,15 @@ function SearchBar() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (searchText.trim() !=="") {
+    
+        if (searchResults.length > 0 && searchText.trim() !== "") {
+            const topResult = searchResults[0];
+            history.push(`/restaurants/${topResult.id}`);
+            
             setSearchText("");
-            history.push(`/search?query=${searchText}`)
-            // dispatch(clearSearchResults());
+            dispatch(clearSearchResults());
         }
-    };
+    }
 
     return (
         <div className="searchbar-container">
@@ -66,13 +69,14 @@ function SearchBar() {
                 onChange={(e) => { handleChange(e); openSearchResults(); }}
             ></input>
 
-            <button onClick={handleSubmit}>Search</button>
+            <button onClick={handleSubmit}>Let's go</button>
 
             {showSearchResults && searchText && (
                 <ul id="search-dropdown">
                     {searchResults.map(result => (
                         <li key={result.id} onClick={handleClickLink(result.id)} className="search-dropdown-item">
-                            {result.name}
+                            <div className="restaurant-name">{result.name}</div>
+                            <div className="restaurant-neighborhood">{result.neighborhood}</div>
                         </li>
                     ))}
                 </ul>
