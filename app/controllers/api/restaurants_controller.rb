@@ -15,6 +15,15 @@ class Api::RestaurantsController < ApplicationController
     render :show
   end
 
+  def search
+    query = params[:query]
+
+    @restaurants = Restaurant.where('name ILIKE ?', "%#{query}%")
+    # @restaurants = Restaurant.where('name ILIKE ? OR city ILIKE', "%#{query}%")
+
+    render :search
+  end
+
   # private
 
   # def restaurant_params

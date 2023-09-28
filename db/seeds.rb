@@ -35,26 +35,6 @@ User.create!(
 )
 
 puts "Creating restaurants..."
-# restaurant1 = Restaurant.create!(
-#   name: 'Bad Roman',
-#   description: 'A new lively, modern Italian restaurant from Quality Branded.',
-#   cuisine: 'Italian',
-#   expense: '$$$',
-#   price_range: '$31 to $50',
-#   neighborhood: "Hell's Kitchen",
-#   address: '10 Columbus Cir, New York, NY 10019',
-#   phone: '(212) 970-2033',
-#   website_url: 'http://www.badromannyc.com/'
-# )
-
-# restaurant1_photo_url = "https://tablr-dev.s3.amazonaws.com/xgliof3zc483tld4p5fmx8jho1zk"
-
-# restaurant1.photo.attach(
-#   io: URI.open("https://tablr-dev.s3.amazonaws.com/xgliof3zc483tld4p5fmx8jho1zk"),
-#   filename: "photo_1"
-# )
-
-# Restaurant Seeds
 
 la_pizza = Restaurant.create!(
   name: 'La Pizza & La Pasta',
@@ -91,8 +71,8 @@ Restaurant.create!(
 
 hawksmoor_nyc = Restaurant.find_by(name: 'Hawksmoor NYC')
 hawksmoor_nyc.photo.attach(
-  io: URI.open('https://tablr-seeds.s3.amazonaws.com/hawksmoor.webp'),
-  filename: "restaurant_hawksmoor_nyc.webp"
+  io: URI.open('https://tablr-seeds.s3.amazonaws.com/hawksmoor.jpeg'),
+  filename: "restaurant_hawksmoor_nyc.jpeg"
 )
 
 Restaurant.create!(
