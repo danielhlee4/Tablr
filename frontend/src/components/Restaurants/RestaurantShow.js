@@ -47,7 +47,12 @@ function RestaurantShow() {
 
     return (
         <>
-            <img className='show-restaurant-image' src={restaurant.photoUrl} alt={restaurant.name} />
+            <img 
+                className='show-restaurant-image' 
+                // src={restaurant.photoUrl}
+                src={theready} 
+                alt={restaurant.name} 
+            />
             <div className='show-main-content'>
                 <div className='show-overview'>
                     <div className='navbar'>
@@ -129,7 +134,7 @@ function RestaurantShow() {
                             <li>
                                 <div className='show-info-item'>
                                     <span>
-                                        <i class="fa-light fa-browser"></i>
+                                        <i className="fa-light fa-browser"></i>
                                     </span>
                                     <div>
                                         <span>Website</span>

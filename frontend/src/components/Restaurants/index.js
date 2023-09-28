@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import SearchBanner from '../Search';
 import RestaurantIndexItem from './RestaurantIndexItem';
 import { getRestaurants, fetchRestaurants } from '../../store/restaurants';
 import Slider from "react-slick";
@@ -27,6 +28,7 @@ function RestaurantIndex() {
 
     return (
       <>
+            <SearchBanner />
           {neighborhoods.map((neighborhood) => (
             <div key={neighborhood} className='index-content'>
               <div className='carousel-wrapper'>
