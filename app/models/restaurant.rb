@@ -32,4 +32,5 @@ class Restaurant < ApplicationRecord
         length: { is: 14 }
 
     has_one_attached :photo
+    has_many :reservations, dependent: :destroy
 end

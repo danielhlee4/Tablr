@@ -17,10 +17,17 @@ class Reservation < ApplicationRecord
     validates :party_size, inclusion: { in: 1..11, message: "must be between 1 and 11" }, presence: true
     validate :validate_time_slot
     validate :date_cannot_be_in_the_past
+    validate :no_overlapping_reservations
+
+    belongs_to :user
+    belongs_to :restaurant
 
     def validate_time_slot
         if time
-            unless time.min % 30 == 0 && time >= "11:00:00" && time <= "22:00:00"
+            time_in_est = time.in_time_zone('Eastern Time (US & Canada)')
+            start_time = Time.zone.parse("11:00:00")
+            end_time = Time.zone.parse("22:00:00")
+            unless time_in_est.min % 30 == 0 && time_in_est >= start_time && time_in_est <= end_time
                 errors.add(:time, "must be between 11:00 am and 10:00 pm and in 30-minute intervals")
             end
         end
@@ -32,4 +39,18 @@ class Reservation < ApplicationRecord
         end
     end
 
+    def no_overlapping_reservations
+        overlapping_reservation = Reservation.where(
+            user_id: user_id,
+            date: date,
+            time: time
+        )
+        
+        # Exclude the current reservation if updating
+        overlapping_reservations_query = overlapping_reservations_query.where.not(id: id) if id.present?
+
+        if overlapping_reservation.exists?
+            errors.add(:base, "You already have a reservation at this time and date.")
+        end
+    end
 end
