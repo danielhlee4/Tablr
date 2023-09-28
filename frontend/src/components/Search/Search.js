@@ -69,7 +69,7 @@ function SearchBar() {
                 onChange={(e) => { handleChange(e); openSearchResults(); }}
             ></input>
 
-            <button onClick={handleSubmit}>Let's go</button>
+            <button onClick={handleSubmit}>Tablr it</button>
 
             {showSearchResults && searchText && (
                 <ul id="search-dropdown">

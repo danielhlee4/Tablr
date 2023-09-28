@@ -14,6 +14,8 @@
 #  website_url  :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  lat          :float            default(0.0), not null
+#  long         :float            default(0.0), not null
 #
 class Restaurant < ApplicationRecord
     validates :name, :cuisine, :address, :website_url,
