@@ -27,7 +27,8 @@ class Reservation < ApplicationRecord
             time_in_est = time.in_time_zone('Eastern Time (US & Canada)')
             start_time = Time.zone.parse("11:00:00")
             end_time = Time.zone.parse("22:00:00")
-            unless time_in_est.min % 30 == 0 && time_in_est >= start_time && time_in_est <= end_time
+            # check if time of the reservation is between 11 am and 10 pm and is either on the hour or the half-hour.
+            unless time_in_est.min % 30 == 0 && time_in_est.strftime('%H:%M:%S') >= start_time.strftime('%H:%M:%S') && time_in_est.strftime('%H:%M:%S') <= end_time.strftime('%H:%M:%S')
                 errors.add(:time, "must be between 11:00 am and 10:00 pm and in 30-minute intervals")
             end
         end
@@ -40,7 +41,7 @@ class Reservation < ApplicationRecord
     end
 
     def no_overlapping_reservations
-        overlapping_reservation = Reservation.where(
+        overlapping_reservations_query = Reservation.where(
             user_id: user_id,
             date: date,
             time: time
@@ -49,7 +50,7 @@ class Reservation < ApplicationRecord
         # Exclude the current reservation if updating
         overlapping_reservations_query = overlapping_reservations_query.where.not(id: id) if id.present?
 
-        if overlapping_reservation.exists?
+        if overlapping_reservations_query.exists?
             errors.add(:base, "You already have a reservation at this time and date.")
         end
     end
