@@ -7,18 +7,50 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
   
-  #modal-background {
+#modal-background {
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
-  }
+}
   
-  #modal-content {
+#modal-content {
     position: absolute;
     background-color:white;
-  }
+}
+
+#modal.search-modal #modal-content {
+    width: 100vw;
+    height: auto;
+    top: 5%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding-top: 25px;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+#modal-close-button-container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  border: none; 
+  cursor: pointer;
+}
+
+#modal-close-button {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white; 
+}
