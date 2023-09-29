@@ -84,17 +84,17 @@ export const deleteReservation = reservationId => async dispatch => {
 
 // Reducer
 const reservationsReducer = (state = {}, action) => {
-    const newState = { ...state };
+    const nextState = { ...state };
 
     switch (action.type) {
         case RECEIVE_RESERVATIONS:
             return { ...action.reservations };
         case RECEIVE_RESERVATION:
-            newState[action.reservation.id] = action.reservation;
-            return newState;
+            nextState[action.reservation.id] = action.reservation;
+            return nextState;
         case REMOVE_RESERVATION:
-            delete newState[action.reservationId];
-            return newState;
+            delete nextState[action.reservationId];
+            return nextState;
         default:
             return state;
     }
