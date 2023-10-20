@@ -32,7 +32,7 @@ function RestaurantIndexItem({ restaurant }) {
                 <img 
                     // src={restaurant.photoUrl}
                     src={badroman}
-                    alt={restaurant.name}
+                    alt={`image of ${restaurant.name}`} 
                 />
             </div>
             <div className="text-container">

@@ -3,7 +3,7 @@ import './Reservations.css';
 function ReservationShow() {
     return (
         <>
-            <div className="show-reservations-container"></div>
+            <div className="show-reservations-container">Reservations coming soon!</div>
         </>
     )
 
