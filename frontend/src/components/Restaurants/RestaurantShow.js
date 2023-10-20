@@ -51,7 +51,7 @@ function RestaurantShow() {
                 className='show-restaurant-image' 
                 // src={restaurant.photoUrl}
                 src={theready} 
-                alt={restaurant.name} 
+                alt={`image of ${restaurant.name}`}
             />
             <div className='show-main-content'>
                 <div className='show-overview'>
@@ -91,6 +91,7 @@ function RestaurantShow() {
                         <div id='show-reviews-title-container'>
                             <h2 id='show-reviews-title'>What 42 people are saying</h2>
                         </div>
+                        <h3>Reviews coming soon!</h3>
                     </div>
                 </div>
                 <div className='sidebar'>
