@@ -40,18 +40,18 @@ class Reservation < ApplicationRecord
         end
     end
 
-    # def no_overlapping_reservations
-    #     overlapping_reservations_query = Reservation.where(
-    #         user_id: user_id,
-    #         date: date,
-    #         time: time
-    #     )
+    def no_overlapping_reservations
+        overlapping_reservations_query = Reservation.where(
+            user_id: user_id,
+            date: date,
+            time: time
+        )
         
-    #     # Exclude the current reservation if updating
-    #     overlapping_reservations_query = overlapping_reservations_query.where.not(id: id) if id.present?
+        # Exclude the current reservation if updating
+        overlapping_reservations_query = overlapping_reservations_query.where.not(id: id) if id.present?
 
-    #     if overlapping_reservations_query.exists?
-    #         errors.add(:base, "You already have a reservation at this time and date.")
-    #     end
-    # end
+        if overlapping_reservations_query.exists?
+            errors.add(:base, "You already have a reservation at this time and date.")
+        end
+    end
 end
