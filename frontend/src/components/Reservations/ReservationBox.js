@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { createReservation } from '../../store/reservations';
@@ -9,12 +9,47 @@ function ReservationBox() {
     const { restaurantId } = useParams();
     const currentUser = useSelector(state => state.session.user);
     
-    const [partySize, setPartySize] = useState('1 person');
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
+    const [partySize, setPartySize] = useState('2');
     const [times, setTimes] = useState('');
     const [showTimes, setShowTimes] = useState(false);
     const [error, setError] = useState(null);
+    
+    const currentDate = new Date().toISOString().split('T')[0];
+    const [date, setDate] = useState(currentDate);
+    // Set default time value to next hour or half hour 
+    const calculateRoundedUpTime = () => {
+        const now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+
+        if (minutes < 30) {
+            minutes = 30;
+        } else {
+            minutes = 0;
+            hours += 1;
+        }
+
+        const hoursString = hours.toString().padStart(2, '0');
+        const minutesString = minutes.toString().padStart(2, '0');
+        
+        return `${hoursString}:${minutesString}`;
+    };
+
+    const [time, setTime] = useState(calculateRoundedUpTime);
+
+    // Recalculate the time if the component is still mounted after a half-hour
+    useEffect(() => {
+        const now = new Date();
+        const minutesToNextHalfHour = 30 - (now.getMinutes() % 30);
+        const msToNextHalfHour = minutesToNextHalfHour * 60 * 1000;
+
+        const timeoutId = setTimeout(() => {
+            setTime(calculateRoundedUpTime());
+        }, msToNextHalfHour);
+
+        // Cleanup function to clear the timeout if the component unmounts
+        return () => clearTimeout(timeoutId);
+    }, []);
 
     const convertTo24HourFormat = (time) => {
         const [hour, minute, period] = time.split(/[:\s]/);
@@ -44,7 +79,7 @@ function ReservationBox() {
 
     function isValidTime(selectedTime) {
         const closingTime = 22; // 10 PM
-        const openingTime = 9; // 9 AM
+        const openingTime = 11; // 11 AM
       
         // Convert selected time to a 24-hour format number.
         const timeParts = selectedTime.split(':');
@@ -104,9 +139,15 @@ function ReservationBox() {
             <label>
                 Party Size:
                 <select value={partySize} onChange={e => setPartySize(e.target.value)}>
-                    {[...Array(11)].map((_, i) => 
-                        <option key={i} value={`${i+1} person`}>{`${i+1} person${i > 0 ? 's' : ''}`}</option>
-                    )}
+                    {[...Array(11)].map((_, i) => {
+                        // Set default value to 2 persons which is a string number '2'
+                        const value = (i + 1).toString();
+                        return (
+                            <option key={i} value={value}>
+                                {`${i + 1} person${i > 0 ? 's' : ''}`}
+                            </option>
+                        );
+                    })}
                 </select>
             </label>
             <br />
