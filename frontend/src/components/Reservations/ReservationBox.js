@@ -16,12 +16,6 @@ function ReservationBox() {
     const [showTimes, setShowTimes] = useState(false);
     const [error, setError] = useState(null);
 
-    // const times = []; 
-    // for(let i=11; i<=22; i++) { // Generate times from 11 AM to 10 PM in 30-minute intervals
-    //     times.push(`${i%12 || 12}:00 ${i<12 ? 'AM' : 'PM'}`);
-    //     times.push(`${i%12 || 12}:30 ${i<12 ? 'AM' : 'PM'}`);
-    // }
-
     const convertTo24HourFormat = (time) => {
         const [hour, minute, period] = time.split(/[:\s]/);
         let h = parseInt(hour);
@@ -140,7 +134,7 @@ function ReservationBox() {
                             <button 
                                 key={index} 
                                 onClick={() => handleTimeClick(t)}>
-                                {`${hourIn12}:${minute} ${period}`} {/* Display in 12-hour format */}
+                                {`${hourIn12}:${minute} ${period}`}
                             </button>
                         );
                     })}
