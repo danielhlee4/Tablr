@@ -1,3 +1,5 @@
+import csrfFetch from "./csrf";
+
 // Action constants and their corresponding actions
 export const RECEIVE_RESERVATIONS = 'reservations/RECEIVE_RESERVATIONS';
 export const RECEIVE_RESERVATION = 'reservations/RECEIVE_RESERVATION';
@@ -47,7 +49,7 @@ export const fetchReservation = reservationId => async dispatch => {
 }
 
 export const createReservation = reservation => async dispatch => {
-    const res = await fetch(`/api/reservations`, {
+    const res = await csrfFetch(`/api/reservations`, {
         method: 'POST',
         body: JSON.stringify(reservation),
         headers: { 'Content-Type': 'application/json' }
@@ -56,11 +58,11 @@ export const createReservation = reservation => async dispatch => {
     if (res.ok) {
         const newReservation = await res.json();
         dispatch(receiveReservation(newReservation));
-    }
+    } 
 }
 
 export const updateReservation = reservation => async dispatch => {
-    const res = await fetch(`/api/reservations/${reservation.id}`, {
+    const res = await csrfFetch(`/api/reservations/${reservation.id}`, {
         method: 'PATCH',
         body: JSON.stringify(reservation),
         headers: { 'Content-Type': 'application/json' }
@@ -73,7 +75,7 @@ export const updateReservation = reservation => async dispatch => {
 }
 
 export const deleteReservation = reservationId => async dispatch => {
-    const res = await fetch(`/api/reservations/${reservationId}`, {
+    const res = await csrfFetch(`/api/reservations/${reservationId}`, {
         method: 'DELETE'
     });
 

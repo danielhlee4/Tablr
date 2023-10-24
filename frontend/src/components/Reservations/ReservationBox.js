@@ -39,11 +39,17 @@ function ReservationBox() {
     }
 
     const handleTimeClick = (selectedTime) => {
+
+        const numberOfPeople = parseInt(partySize.split(' ')[0]); // Convert '1 person' to 1
+
         const reservationDetails = {
-            partySize: parseInt(partySize.split(' ')[0]), // Convert '1 person' to 1
-            date: date,
-            time: convertTo24HourFormat(selectedTime),
-            restaurantId
+            reservation: {
+                partySize: numberOfPeople,
+                date: date,
+                time: convertTo24HourFormat(selectedTime),
+                // userId: currentUser?.id,
+                restaurantId: parseInt(restaurantId)
+            }
         };
         dispatch(createReservation(reservationDetails));
         setShowTimes(false);
