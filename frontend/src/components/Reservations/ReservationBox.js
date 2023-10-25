@@ -155,11 +155,11 @@ function ReservationBox() {
                 Party Size
                 <select value={partySize} onChange={e => setPartySize(e.target.value)}>
                     {[...Array(11)].map((_, i) => {
-                        // Set default value to 2 persons which is a string number '2'
                         const value = (i + 1).toString();
+                        const label = i + 1 === 1 ? 'person' : 'people';
                         return (
                             <option key={i} value={value}>
-                                {`${i + 1} person${i > 0 ? 's' : ''}`}
+                                {`${i + 1} ${label}`}
                             </option>
                         );
                     })}
