@@ -1,6 +1,7 @@
 .reservation-box-container {
     width: 320px;
     height: 350px;
+    padding: 15px;
     border-radius: 8px;
     background-color: #fff;
     position: sticky;
@@ -8,8 +9,66 @@
     box-shadow: 0px 2px 6px rgba(0, 0.2, 0.2, 0.2);
 }
 
+.reservation-box-heading {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
 .error-message {
     color: red;
     font-weight: bold;
-    margin-top: 10px; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.reservation-box-label {
+    display: block;
+    margin: 10px 0;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.reservation-box-label select, 
+.reservation-box-label input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.reservation-box-find-time-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #FF5733;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.reservation-box-find-time-btn:hover {
+    background-color: #E84D1E;
+}
+
+.reservation-box-available-times {
+    margin-top: 15px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+}
+
+.reservation-box-available-times button {
+    padding: 5px;
+    border: none;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.reservation-box-available-times button:hover {
+    background-color: #ccc;
 }

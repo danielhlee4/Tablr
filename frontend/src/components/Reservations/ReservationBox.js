@@ -8,15 +8,15 @@ function ReservationBox() {
     const dispatch = useDispatch();
     const { restaurantId } = useParams();
     const currentUser = useSelector(state => state.session.user);
-    
     const [partySize, setPartySize] = useState('2');
     const [times, setTimes] = useState('');
     const [showTimes, setShowTimes] = useState(false);
     const [error, setError] = useState(null);
-    
     const currentDate = new Date().toISOString().split('T')[0];
     const [date, setDate] = useState(currentDate);
-    // Set default time value to next hour or half hour 
+    const timeOptions = generateTimes();
+
+    // Set default time value to next half hour increment
     const calculateRoundedUpTime = () => {
         const now = new Date();
         let hours = now.getHours();
@@ -71,7 +71,7 @@ function ReservationBox() {
             return;
         }
 
-        const time24 = time + ":00";
+        const time24 = convertTo24HourFormat(time);
         const availableTimes = generateSurroundingTimes(time24);
         setTimes(availableTimes); 
         setShowTimes(true);
@@ -88,7 +88,7 @@ function ReservationBox() {
         return hour >= openingTime && hour < closingTime;
     }
 
-    // Generate up to five reservation times
+    // Generate up to five reservation times when clicking 'find a time'
     function generateSurroundingTimes(selectedTime) {
         const interval = 30;
         let times = [];
@@ -117,6 +117,21 @@ function ReservationBox() {
         return times;
     }
 
+    // For time input
+    function generateTimes() {
+        let times = [];
+        for (let i = 11; i <= 21; i++) { 
+            let hour = i > 12 ? i - 12 : i;
+            let period = i < 12 || i === 24 ? 'AM' : 'PM';
+            times.push(`${hour}:00 ${period}`);
+            if (i !== 21) { // Exclude the half-hour for 9:30 PM
+                times.push(`${hour}:30 ${period}`);
+            }
+        }
+        return times;
+    }
+    
+
     const handleTimeClick = (selectedTime) => {
         setTime(selectedTime);
         const numberOfPeople = parseInt(partySize.split(' ')[0]); // Convert '1 person' to 1
@@ -134,9 +149,9 @@ function ReservationBox() {
 
     return (
         <div className="reservation-box-container">
-            <h2>Make a reservation</h2>
+            <h2 className="reservation-box-heading">Make a reservation</h2>
             {error && <div className="error-message">{error}</div>}
-            <label>
+            <label className="reservation-box-label">
                 Party Size:
                 <select value={partySize} onChange={e => setPartySize(e.target.value)}>
                     {[...Array(11)].map((_, i) => {
@@ -151,20 +166,24 @@ function ReservationBox() {
                 </select>
             </label>
             <br />
-            <label>
+            <label className="reservation-box-label">
                 Date:
                 <input type="date" min={new Date().toISOString().split('T')[0]} value={date} onChange={e => setDate(e.target.value)} />
             </label>
             <br />
-            <label>
+            <label className="reservation-box-label">
                 Time:
-                <input type="time" value={time} onChange={e => setTime(e.target.value)} />
+                <select value={time} onChange={e => setTime(e.target.value)}>
+                    {timeOptions.map((t, idx) => (
+                        <option key={idx} value={t}>{t}</option>
+                    ))}
+                </select>
             </label>
             <br />
-            <button onClick={handleSubmit}>Find a time</button>
+            <button className="reservation-box-find-time-btn" onClick={handleSubmit}>Find a time</button>
 
             {showTimes && (
-                <div className="available-times">
+                <div className="reservation-box-available-times">
                     {times.map((t, index) => {
                         // Convert 't' from "HH:mm" to 12-hour format with AM/PM
                         const [hour, minute] = t.split(':');
