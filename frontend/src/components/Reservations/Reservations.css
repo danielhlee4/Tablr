@@ -13,6 +13,9 @@
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 10px;
+    text-align: center;
+    border-bottom: 1px solid #d8d9db;
+    padding-bottom: 10px;
 }
 
 .error-message {
@@ -34,24 +37,49 @@
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 4px;
     margin-top: 5px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #d8d9db;
+    font: inherit;
+    padding-left: 0;
 }
 
-.reservation-box-find-time-btn {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #FF5733;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+.reservation-box-label select {
     cursor: pointer;
+}
+
+.reservation-box-find-time-btn,
+.reservation-box-available-times button {
+    font: inherit;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #da3743;
+    color: white;
+    font-weight: 400;
     transition: background-color 0.3s;
 }
 
-.reservation-box-find-time-btn:hover {
-    background-color: #E84D1E;
+.reservation-box-available-times button {
+    padding: 8px 0px;
+    font-size: 13px;
+}
+
+.reservation-box-find-time-btn {
+    width: 100%;
+    padding: 15px 0px
+}
+
+.reservation-box-find-time-btn:hover,
+.reservation-box-available-times button:hover {
+    background-color: #99151e;
+}
+
+.reservation-box-find-time-btn:active,
+.reservation-box-available-times button:active {
+    background-color: rgb(241, 242, 244);
+    color: rgb(111, 115, 123);
 }
 
 .reservation-box-available-times {
@@ -61,14 +89,53 @@
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
 }
 
-.reservation-box-available-times button {
-    padding: 5px;
-    border: none;
-    background-color: #ddd;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.date-time-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    border-bottom: none;
+    margin-bottom: 10px;
 }
 
-.reservation-box-available-times button:hover {
-    background-color: #ccc;
+.date-label, .time-label {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.time-label {
+    margin-right: 0;
+}
+
+.date-label input[type="date"] {
+    width: 80%;
+    box-sizing: border-box;
+}
+
+.date-time-container .date-label,
+.date-time-container .time-label {
+    width: 49%;
+    margin-right: 2%;
+    box-sizing: border-box;
+}
+
+.date-time-container .time-label {
+    margin-right: 0;
+}
+
+.date-label input {
+    width: 80%;
+    margin-right: 10px;
+}
+
+.time-label select {
+    width: 100%;
+}
+
+.date-label input[type="date"],
+.time-label select {
+    padding: 5px 0px;
+    font-size: 14px;
+    line-height: 1.5;
 }
