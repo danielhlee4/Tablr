@@ -49,6 +49,7 @@
     cursor: pointer;
 }
 
+.reservation-box-confirm-btn,
 .reservation-box-find-time-btn,
 .reservation-box-available-times button {
     font: inherit;
@@ -61,11 +62,16 @@
     transition: background-color 0.3s;
 }
 
+.reservation-box-confirm-btn {
+    background-color: #1c2c54;
+}
+
 .reservation-box-available-times button {
     padding: 8px 0px;
     font-size: 13px;
 }
 
+.reservation-box-confirm-btn,
 .reservation-box-find-time-btn {
     width: 100%;
     padding: 15px 0px
@@ -76,10 +82,19 @@
     background-color: #99151e;
 }
 
+.reservation-box-confirm-btn:hover {
+    background-color: #384870;
+}
+
+.reservation-box-confirm-btn:active,
 .reservation-box-find-time-btn:active,
 .reservation-box-available-times button:active {
     background-color: rgb(241, 242, 244);
     color: rgb(111, 115, 123);
+}
+
+.reservation-box-confirm-btn {
+    margin-top: 11px;
 }
 
 .reservation-box-available-times {

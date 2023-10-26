@@ -15,6 +15,7 @@ function ReservationBox() {
     const currentDate = new Date().toISOString().split('T')[0];
     const [date, setDate] = useState(currentDate);
     const timeOptions = generateTimes();
+    const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
 
     // Set default time value to next half hour increment
     const calculateRoundedUpTime = () => {
@@ -58,24 +59,6 @@ function ReservationBox() {
         if (period === "AM" && h === 12) h -= 12;
         return `${h.toString().padStart(2, '0')}:${minute}:00`;
     };
-
-    const handleSubmit = () => {
-        if (!currentUser) {
-            setError("Please log in to make a reservation.");
-            return;
-        }
-        setError(null);
-
-        if (!time) {
-            setError("Please specify a time.");
-            return;
-        }
-
-        const time24 = convertTo24HourFormat(time);
-        const availableTimes = generateSurroundingTimes(time24);
-        setTimes(availableTimes); 
-        setShowTimes(true);
-    }
 
     function isValidTime(selectedTime) {
         const closingTime = 22; // 10 PM
@@ -133,18 +116,40 @@ function ReservationBox() {
     
 
     const handleTimeClick = (selectedTime) => {
-        setTime(selectedTime);
+        setSelectedTimeSlot(selectedTime);
+    }
+
+    const handleConfirmClick = () => {
         const numberOfPeople = parseInt(partySize.split(' ')[0]); // Convert '1 person' to 1
         const reservationDetails = {
             reservation: {
                 partySize: numberOfPeople,
                 date: date,
-                time: convertTo24HourFormat(selectedTime),
+                time: convertTo24HourFormat(selectedTimeSlot),
                 restaurantId: restaurantId
             }
         };
         dispatch(createReservation(reservationDetails));
         setShowTimes(false);
+        setSelectedTimeSlot(null);
+    };
+
+    const handleSubmit = () => {
+        if (!currentUser) {
+            setError("Please log in to make a reservation.");
+            return;
+        }
+        setError(null);
+
+        if (!time) {
+            setError("Please specify a time.");
+            return;
+        }
+
+        const time24 = convertTo24HourFormat(time);
+        const availableTimes = generateSurroundingTimes(time24);
+        setTimes(availableTimes); 
+        setShowTimes(true);
     }
 
     return (
@@ -153,7 +158,10 @@ function ReservationBox() {
             {error && <div className="error-message">{error}</div>}
             <label className="reservation-box-label">
                 Party Size
-                <select value={partySize} onChange={e => setPartySize(e.target.value)}>
+                <select value={partySize} onChange={e => {
+                    setPartySize(e.target.value);
+                    setSelectedTimeSlot(null);
+                }}>
                     {[...Array(11)].map((_, i) => {
                         const value = (i + 1).toString();
                         const label = i + 1 === 1 ? 'person' : 'people';
@@ -169,12 +177,18 @@ function ReservationBox() {
             <div className="date-time-container">
                 <label className="reservation-box-label date-label">
                     Date
-                    <input type="date" min={new Date().toISOString().split('T')[0]} value={date} onChange={e => setDate(e.target.value)} />
+                    <input type="date" min={new Date().toISOString().split('T')[0]} value={date} onChange={e => {
+                        setDate(e.target.value);
+                        setSelectedTimeSlot(null);
+                    }} />
                 </label>
                 
                 <label className="reservation-box-label time-label">
                     Time
-                    <select value={time} onChange={e => setTime(e.target.value)}>
+                    <select value={time} onChange={e => {
+                        setTime(e.target.value);
+                        setSelectedTimeSlot(null);
+                    }}>
                         {timeOptions.map((t, idx) => (
                             <option key={idx} value={t}>{t}</option>
                         ))}
@@ -201,6 +215,12 @@ function ReservationBox() {
                         );
                     })}
                 </div>
+            )}
+
+            {selectedTimeSlot && (
+                <button className="reservation-box-confirm-btn" onClick={handleConfirmClick}>
+                    Confirm Reservation
+                </button>
             )}
         </div>
     );
