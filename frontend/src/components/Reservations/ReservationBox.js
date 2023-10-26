@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { createReservation } from '../../store/reservations';
 import './Reservations.css';
 
 function ReservationBox() {
     const dispatch = useDispatch();
+    const location = useLocation();
     const { restaurantId } = useParams();
     const currentUser = useSelector(state => state.session.user);
     const [partySize, setPartySize] = useState('2');
@@ -151,6 +152,21 @@ function ReservationBox() {
         setTimes(availableTimes); 
         setShowTimes(true);
     }
+
+    // When restaurant index reservation time is clicked
+    useEffect(() => {
+        if (location.state && location.state.selectedTime) {
+            // Set the time
+            setTime(location.state.selectedTime);
+    
+            // Click "find a time"
+            handleSubmit();
+    
+            // Click on the specified time
+            handleTimeClick(location.state.selectedTime);
+        }
+    }, [location]);
+    
 
     return (
         <div className="reservation-box-container">

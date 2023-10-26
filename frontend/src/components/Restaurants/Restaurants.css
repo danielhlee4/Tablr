@@ -256,3 +256,8 @@
 #show-website {
     word-wrap: break-word;
 }
+
+.restaurant-index-reservation-time {
+    position: relative;
+    z-index: 2;
+}

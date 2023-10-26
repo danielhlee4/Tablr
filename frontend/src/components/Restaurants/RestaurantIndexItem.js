@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import badroman from '../../assets/badroman.webp'
 
 function RestaurantIndexItem({ restaurant }) {
     const [isRaised, setIsRaised] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
     const [nextThreeTimes, setNextThreeTimes] = useState([]);
+    const history = useHistory();
 
     const calculateRoundedUpTime = () => {
         const now = new Date();
@@ -45,7 +46,7 @@ function RestaurantIndexItem({ restaurant }) {
         let selectedTimeInMinutes = hours * 60 + minutes;
       
         // Generate times
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 3; i++) {
           let currentTimeInMinutes = selectedTimeInMinutes + i * interval;
           let currentHours = Math.floor(currentTimeInMinutes / 60);
           let currentMinutes = currentTimeInMinutes % 60;
@@ -82,6 +83,12 @@ function RestaurantIndexItem({ restaurant }) {
         setIsClicked(!isClicked);
     };
 
+    const handleTimeClick = (event, time) => {
+        event.preventDefault();
+        event.stopPropagation();
+        history.push(`/restaurants/${restaurant.id}`, { selectedTime: time });
+    };
+
     const containerClasses = `restaurant-container ${isRaised ? 'raised' : ''} ${isClicked ? 'clicked' : ''}`;
 
     return (
@@ -115,9 +122,9 @@ function RestaurantIndexItem({ restaurant }) {
                     </span>
                     <span>{restaurant.neighborhood}</span>
                 </div>
-                <div className="reservation-times">
+                <div className="restaurant-index-reservation-times">
                     {nextThreeTimes.map(time => (
-                        <button key={time} className="reservation-time">
+                        <button key={time} className="restaurant-index-reservation-time" onClick={(e) => handleTimeClick(e, time)}>
                             {time}
                         </button>
                     ))}
