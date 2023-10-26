@@ -21,24 +21,3 @@ function App() {
 }
 
 export default App;
-
-// import { useState, useEffect } from 'react';
-// import RestaurantIndex from './RestaurantIndex';
-
-// function App() {
-//   const [restaurants, setRestaurants] = useState([]);
-
-//   useEffect(() => {
-//     const fetchRestaurants = async () => {
-//       const res = await fetch("/api/restaurants");
-//       setRestaurants (await res.json());
-//     }
-//     fetchRestaurants();
-//   }, []);
-
-//   return (
-//     <RestaurantIndex restaurants={restaurants} />
-//   );
-// }
-
-// export default App;
