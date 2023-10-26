@@ -61,6 +61,13 @@ function ReservationBox() {
         return `${h.toString().padStart(2, '0')}:${minute}:00`;
     };
 
+    const convertTo12HourFormat = (time24) => {
+        const [hours, minutes] = time24.split(":").map(Number);
+        const period = hours >= 12 ? "PM" : "AM";
+        const hours12 = hours > 12 ? hours - 12 : (hours === 0 ? 12 : hours); // Converts 0 hours to 12 for midnight
+        return `${hours12}:${minutes} ${period}`;
+    };
+
     function isValidTime(selectedTime) {
         const closingTime = 22; // 10 PM
         const openingTime = 11; // 11 AM
@@ -201,10 +208,15 @@ function ReservationBox() {
                 
                 <label className="reservation-box-label time-label">
                     Time
-                    <select value={time} onChange={e => {
-                        setTime(e.target.value);
-                        setSelectedTimeSlot(null);
-                    }}>
+                    <select 
+                        value={convertTo12HourFormat(time)} 
+                        onChange={e => {
+                            // Convert the selected value (like "3:00 PM") back to 24-hour format (like "15:00") before setting the state
+                            const timeIn24HourFormat = convertTo24HourFormat(e.target.value);
+                            setTime(timeIn24HourFormat);
+                            setSelectedTimeSlot(null);
+                        }}
+                    >
                         {timeOptions.map((t, idx) => (
                             <option key={idx} value={t}>{t}</option>
                         ))}
