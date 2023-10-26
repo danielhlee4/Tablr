@@ -18,6 +18,7 @@ function ReservationBox() {
     const [date, setDate] = useState(currentDate);
     const timeOptions = generateTimes();
     const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+    const sessionUser = useSelector(state => state.session.user);
 
     // Set default time value to next half hour increment
     const calculateRoundedUpTime = () => {
@@ -239,7 +240,7 @@ function ReservationBox() {
                 </div>
             )}
 
-            {selectedTimeSlot && (
+            {sessionUser && selectedTimeSlot && (
                 <button className="reservation-box-confirm-btn" onClick={handleConfirmClick}>
                     Confirm Reservation
                 </button>
