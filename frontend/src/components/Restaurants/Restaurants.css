@@ -257,7 +257,33 @@
     word-wrap: break-word;
 }
 
+/* Reservation buttons */
 .restaurant-index-reservation-time {
     position: relative;
     z-index: 2;
+    font: inherit;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #da3743;
+    color: white;
+    font-weight: 400;
+    transition: background-color 0.3s;
+    padding: 8px 0px;
+    font-size: 13px;
+}
+
+.restaurant-index-reservation-time:hover {
+    background-color: #99151e;
+}
+
+.restaurant-index-reservation-time:active {
+    background-color: rgb(241, 242, 244);
+    color: rgb(111, 115, 123);
+}
+
+.restaurant-index-reservation-times {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import badroman from '../../assets/badroman.webp'
+import { convertTo12HourFormat } from '../../util/timeUtils';
 
 function RestaurantIndexItem({ restaurant }) {
     const [isRaised, setIsRaised] = useState(false);
@@ -46,7 +47,7 @@ function RestaurantIndexItem({ restaurant }) {
         let selectedTimeInMinutes = hours * 60 + minutes;
       
         // Generate times
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 4; i++) {
           let currentTimeInMinutes = selectedTimeInMinutes + i * interval;
           let currentHours = Math.floor(currentTimeInMinutes / 60);
           let currentMinutes = currentTimeInMinutes % 60;
@@ -87,6 +88,7 @@ function RestaurantIndexItem({ restaurant }) {
         event.preventDefault();
         event.stopPropagation();
         history.push(`/restaurants/${restaurant.id}`, { selectedTime: time });
+        console.log("time:", time)
     };
 
     const containerClasses = `restaurant-container ${isRaised ? 'raised' : ''} ${isClicked ? 'clicked' : ''}`;
@@ -125,7 +127,7 @@ function RestaurantIndexItem({ restaurant }) {
                 <div className="restaurant-index-reservation-times">
                     {nextThreeTimes.map(time => (
                         <button key={time} className="restaurant-index-reservation-time" onClick={(e) => handleTimeClick(e, time)}>
-                            {time}
+                            {convertTo12HourFormat(time)}
                         </button>
                     ))}
                 </div>

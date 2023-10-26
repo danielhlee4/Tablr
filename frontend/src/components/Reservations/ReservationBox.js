@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useLocation } from 'react-router-dom';
 import { createReservation } from '../../store/reservations';
+import { convertTo12HourFormat } from '../../util/timeUtils';
 import './Reservations.css';
 
 function ReservationBox() {
@@ -59,13 +60,6 @@ function ReservationBox() {
         if (period === "PM" && h < 12) h += 12;
         if (period === "AM" && h === 12) h -= 12;
         return `${h.toString().padStart(2, '0')}:${minute}:00`;
-    };
-
-    const convertTo12HourFormat = (time24) => {
-        const [hours, minutes] = time24.split(":").map(Number);
-        const period = hours >= 12 ? "PM" : "AM";
-        const hours12 = hours > 12 ? hours - 12 : (hours === 0 ? 12 : hours); // Converts 0 hours to 12 for midnight
-        return `${hours12}:${minutes} ${period}`;
     };
 
     function isValidTime(selectedTime) {
