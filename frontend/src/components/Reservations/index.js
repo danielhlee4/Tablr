@@ -24,15 +24,37 @@ function ReservationIndex() {
         return datetimeB - datetimeA;
     });
 
-    console.log('sorted reservations', sortedUserReservations)
+    const currentDate = new Date();
+
+    const upcomingReservations = sortedUserReservations.filter(reservation => {
+        const reservationDate = new Date(reservation.date);
+        return reservationDate >= currentDate;
+    });
+
+    const pastReservations = sortedUserReservations.filter(reservation => {
+        const reservationDate = new Date(reservation.date);
+        return reservationDate < currentDate;
+    });
 
     return (
-        <div className="index-reservations-container">
-            {sortedUserReservations.map(reservation => (
-                <ReservationIndexItem key={reservation.id} reservation={reservation} />
-            ))}
+        <div className="index-reservations-wrapper">
+            
+            <div className="index-upcoming-reservations-container">
+                <h2 className="index-reservations-title">Upcoming reservations</h2>
+                {upcomingReservations.map(reservation => (
+                    <ReservationIndexItem key={reservation.id} reservation={reservation} />
+                ))}
+            </div>
+            
+            <div className="index-past-reservations-container">
+                <h2 className="index-reservations-title">Past reservations</h2>
+                {pastReservations.map(reservation => (
+                    <ReservationIndexItem key={reservation.id} reservation={reservation} />
+                ))}
+            </div>
+    
         </div>
-    )
+    );
 
 };
 
