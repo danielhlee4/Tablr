@@ -190,9 +190,12 @@
 }
 
 .index-item-reservation-status {
-    color: green;
     font-weight: bold;
     margin-bottom: 8px;
+}
+
+.index-item-reservation-status-confirmed {
+    color: green;
 }
 
 .index-item-reservation-info {

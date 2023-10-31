@@ -10,11 +10,13 @@ function ReservationIndexItem({ reservation }) {
     }
     
     function formatDateAndTime(dateStr, timeStr) {
-        const [_, hours, minutes, seconds] = timeStr.match(/(\d{2}):(\d{2}):(\d{2})/);
-        const combinedDate = new Date(`${dateStr}T${hours}:${minutes}:${seconds}`);
-        const formattedDate = combinedDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-        const formattedTime = combinedDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+        const combinedDate = new Date(`${dateStr}T${timeStr.split('T')[1]}`);
+        const formattedDate = isPastReservation(dateStr, timeStr) ?
+            combinedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) :
+            combinedDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
 
+        const formattedTime = combinedDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+        
         if (isPastReservation(dateStr, timeStr)) {
             const currentYear = new Date().getFullYear();
             const reservationYear = combinedDate.getFullYear();
@@ -33,14 +35,20 @@ function ReservationIndexItem({ reservation }) {
             />
             <div className="index-item-reservation-details">
                 <div className="index-item-reservation-name">{reservation.restaurant.name}</div>
-                <div className="index-item-reservation-status">{isPastReservation(reservation.date, reservation.time) ? 'Reservation completed' : 'Reservation confirmed'}</div>
+                <div className={`index-item-reservation-status ${isPastReservation(reservation.date, reservation.time) ? '' : 'index-item-reservation-status-confirmed'}`}>
+                    {isPastReservation(reservation.date, reservation.time) ? 'Reservation completed' : 'Reservation confirmed'}
+                </div>
                 <div className="index-item-reservation-info">
                     <span>{reservation.partySize} &bull; {formatDateAndTime(reservation.date, reservation.time)}</span>
                 </div>
                 <div>
-                    {isPastReservation(reservation.date, reservation.time) ? <button className="index-item-reservation-action">Leave a review</button> : null}
-                    <button className="index-item-reservation-action">Modify</button>
-                    <button className="index-item-reservation-action">Cancel</button>
+                    {isPastReservation(reservation.date, reservation.time) ? 
+                        <button className="index-item-reservation-action">Leave a review</button> : 
+                        <>
+                            <button className="index-item-reservation-action">Modify</button>
+                            <button className="index-item-reservation-action">Cancel</button>
+                        </>
+                    }
                 </div>
             </div>
         </div>
