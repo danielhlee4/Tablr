@@ -14,6 +14,17 @@ function RestaurantIndexItem({ restaurant }) {
         let hours = now.getHours();
         let minutes = now.getMinutes();
 
+        // Start with 11 AM the next day
+        if (hours >= 22) {
+            now.setDate(now.getDate() + 1);
+            return "11:00";
+        }
+        
+        // If it's before 11 AM, start with 11 AM on the same day
+        if (hours < 11) {
+            return "11:00";
+        }
+
         if (minutes < 30) {
             minutes = 30;
         } else {
