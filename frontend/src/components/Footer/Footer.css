@@ -1,6 +1,7 @@
 footer {
     background-color: #2d333f;
     color: #e0e0e0;
+    flex-shrink: 0;
     padding: 20px;
     text-align: left;
     /* position: absolute;

@@ -10,10 +10,6 @@ function ReservationIndex() {
     const { userId } = useParams();
     const reservations = useSelector(getReservations);
 
-    console.log('All reservations', reservations);
-
-    console.log('userid', userId)
-
     useEffect(() => {
         if (!reservations.length) {
           dispatch(fetchReservations());
@@ -21,7 +17,6 @@ function ReservationIndex() {
     }, [dispatch]);
 
     const userReservations = reservations.filter(reservation => reservation.user.id.toString() === userId);
-    console.log(userReservations)
 
     return (
         <div className="index-reservations-container">

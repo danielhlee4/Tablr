@@ -34,12 +34,21 @@
   font-weight: 300;
 }
 
-body {
+body, html {
     font-family: 'BrandonText', sans-serif;
+    height: 100%;
+    margin: 0;
 }
 
-.container {
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   width: 100%;
   max-width: none;
   margin: 0 auto;
+}
+
+.content {
+  flex: 1 0 auto;
 }
