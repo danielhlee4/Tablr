@@ -47,7 +47,7 @@ function RestaurantIndexItem({ restaurant }) {
         let selectedTimeInMinutes = hours * 60 + minutes;
       
         // Generate times
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 3; i++) {
           let currentTimeInMinutes = selectedTimeInMinutes + i * interval;
           let currentHours = Math.floor(currentTimeInMinutes / 60);
           let currentMinutes = currentTimeInMinutes % 60;

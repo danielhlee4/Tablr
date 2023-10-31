@@ -3,6 +3,7 @@ json.extract! @reservation, :id, :party_size, :date, :time, :occasion, :created_
 json.user do
   json.firstName @reservation.user.first_name
   json.lastName @reservation.user.last_name
+  json.id @reservation.user.id
 end
 
 json.restaurant do
