@@ -79,9 +79,9 @@ function RestaurantShow() {
                             {/* <span>Rating</span>
                             <span>Num Reviews</span> */}
                             <div id='show-overview-bar'>
-                                <i className="fa-light fa-money-bill"></i>
+                                <i className="fa-sharp fa-light fa-money-bill"></i>
                                 <span>{restaurant.priceRange}</span>
-                                <i className="fa-light fa-plate-utensils"></i>
+                                <i className="fa-sharp fa-light fa-plate-utensils"></i>
                                 <span>{restaurant.cuisine}</span>
                             </div>
                             <p className='show-description'>{restaurant.description}</p>
@@ -102,7 +102,7 @@ function RestaurantShow() {
                             <li>
                                 <div className='show-info-item'>
                                     <span>
-                                        <i className="fa-light fa-tree-city"></i>
+                                        <i className="fa-sharp fa-light fa-tree-city"></i>
                                     </span>
                                     <div>
                                         <span>Neighborhood</span>
@@ -113,7 +113,7 @@ function RestaurantShow() {
                             <li>
                                 <div className='show-info-item'>
                                     <span>
-                                        <i className="fa-light fa-plate-utensils"></i>
+                                        <i className="fa-sharp fa-light fa-plate-utensils"></i>
                                     </span>
                                     <div>
                                         <span>Cuisine</span>
@@ -124,7 +124,7 @@ function RestaurantShow() {
                             <li>
                                 <div className='show-info-item'>
                                     <span>
-                                        <i className="fa-light fa-phone"></i>
+                                        <i className="fa-sharp fa-light fa-phone"></i>
                                     </span>
                                     <div>
                                         <span>Phone</span>
@@ -135,7 +135,7 @@ function RestaurantShow() {
                             <li>
                                 <div className='show-info-item'>
                                     <span>
-                                        <i className="fa-light fa-browser"></i>
+                                        <i className="fa-sharp fa-light fa-browser"></i>
                                     </span>
                                     <div>
                                         <span>Website</span>

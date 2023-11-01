@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
-import { createReservation } from '../../store/reservations';
+import { createReservation, getReservationCreationError } from '../../store/reservations';
 import { convertTo12HourFormat } from '../../util/timeUtils';
 import './Reservations.css';
 
@@ -18,7 +18,7 @@ function ReservationBox() {
     const [date, setDate] = useState(currentDate);
     const timeOptions = generateTimes();
     const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
-    const sessionUser = useSelector(state => state.session.user);
+    const reservationCreationError = useSelector(getReservationCreationError);
     const history = useHistory();
 
     // Set default time value to next half hour increment
@@ -134,16 +134,23 @@ function ReservationBox() {
             }
         };
         
-        const wasSuccessful = await dispatch(createReservation(reservationDetails));
-        if (wasSuccessful) {
-            history.push(`/users/${sessionUser.id}/reservations`);
+        const response = await dispatch(createReservation(reservationDetails));
+    
+        if (response && response.ok) {
+            history.push(`/users/${currentUser.id}/reservations`);
+        } else if (response) {
+            const errorData = await response.json();
+            if (errorData.error) {
+                setError(errorData.message);
+            }
         } else {
-            // You can optionally handle/display the error here.
+            setError("This time is in the past or conflicts with another current reservation"); 
         }
-
+    
         setShowTimes(false);
         setSelectedTimeSlot(null);
     };
+    
 
     const handleSubmit = () => {
         if (!currentUser) {
@@ -248,7 +255,7 @@ function ReservationBox() {
                 </div>
             )}
 
-            {sessionUser && selectedTimeSlot && (
+            {currentUser && selectedTimeSlot && (
                 <button className="reservation-box-confirm-btn" onClick={handleConfirmClick}>
                     Confirm Reservation
                 </button>

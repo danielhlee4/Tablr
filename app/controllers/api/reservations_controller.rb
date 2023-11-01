@@ -12,18 +12,17 @@ class Api::ReservationsController < ApplicationController
     end
   
     def create
-        # puts params.inspect
         @reservation = Reservation.new(reservation_params)
         @reservation.user = current_user
     
         if @reservation.save
             render :show
         else
-            # puts @reservation.errors.full_messages
-            render json: { errors: @reservation.errors }, status: :unprocessable_entity
+            error_messages = @reservation.errors.full_messages.join(', ')
+            render json: { errors: error_messages }, status: :unprocessable_entity
         end
     end
-  
+    
     def update
         @reservation = Reservation.find(params[:id])
         

@@ -35,6 +35,11 @@ export const getReservations = state => {
     return Object.values(state.reservations || {});
 }
 
+export const getReservationCreationError = state => {
+    return state.reservations.reservationCreationError || null;
+}
+
+
 // Thunk action creators
 export const fetchReservations = () => async dispatch => {
     const res = await fetch('/api/reservations');
@@ -55,22 +60,28 @@ export const fetchReservation = reservationId => async dispatch => {
 }
 
 export const createReservation = reservation => async dispatch => {
-    const res = await csrfFetch(`/api/reservations`, {
-        method: 'POST',
-        body: JSON.stringify(reservation),
-        headers: { 'Content-Type': 'application/json' }
-    });
+    try {
+        const res = await csrfFetch(`/api/reservations`, {
+            method: 'POST',
+            body: JSON.stringify(reservation),
+            headers: { 'Content-Type': 'application/json' }
+        });
 
-    if (res.ok) {
-        const newReservation = await res.json();
-        dispatch(receiveReservation(newReservation));
-        return true;
-    } else {
-        const errorData = await res.json();
-        dispatch(reservationCreationFailure(errorData.message));
-        return false;
+        const data = await res.json();
+
+        if (res.ok) {
+            dispatch(receiveReservation(data));
+        } else {
+            dispatch(reservationCreationFailure(data.errors.join(', ')));
+        }
+        return res;
+    } catch (error) {
+        console.error("Error during reservation:", error);
+        dispatch(reservationCreationFailure("An unexpected error occurred."));
+        return null;
     }
-}
+};
+
 
 export const updateReservation = reservation => async dispatch => {
     const res = await csrfFetch(`/api/reservations/${reservation.id}`, {
@@ -108,6 +119,8 @@ const reservationsReducer = (state = {}, action) => {
         case REMOVE_RESERVATION:
             delete nextState[action.reservationId];
             return nextState;
+        case CREATE_RESERVATION_FAILURE:
+            return { ...state, reservationCreationError: action.error };
         default:
             return state;
     }
