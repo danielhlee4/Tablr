@@ -185,6 +185,8 @@
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 8px;
+    text-decoration: none;
+    color: inherit;
 }
 
 .index-item-reservation-status {
@@ -216,6 +218,11 @@
     background-color: #d0d0d0;
 }
 
+.index-item-reservations-container button {
+    font-family: inherit;
+}
+
+
 /* Reservation Index */
 
 .index-reservations-wrapper {
@@ -235,4 +242,24 @@
 .index-reservations-title {
     font-size: 24px;
     margin-bottom: 20px;
+}
+
+.index-item-reservation-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.index-reservation-icon {
+    font-size: 20px;
+}
+
+.index-reservation-party-size,
+.index-reservation-date-time {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.index-item-reservation-icon-wrapper {
+    margin-right: 8px;
 }
