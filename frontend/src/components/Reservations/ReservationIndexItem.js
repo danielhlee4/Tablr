@@ -1,30 +1,32 @@
+import { adjustForDST } from '../../util/timeUtils';
 import badroman from '../../assets/badroman.webp'
 import './Reservations.css';
 
 function ReservationIndexItem({ reservation }) {
     
     function isPastReservation(dateStr, timeStr) {
-        const combinedDate = new Date(`${dateStr}T${timeStr.split('T')[1]}`);
+        const combinedDate = adjustForDST(dateStr, timeStr);
         const now = new Date();
         return combinedDate < now;
     }
     
     function formatDateAndTime(dateStr, timeStr) {
-        const combinedDate = new Date(`${dateStr}T${timeStr.split('T')[1]}`);
+        const adjustedDate = adjustForDST(dateStr, timeStr);
         const formattedDate = isPastReservation(dateStr, timeStr) ?
-            combinedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) :
-            combinedDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-
-        const formattedTime = combinedDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+            adjustedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) :
+            adjustedDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    
+        const formattedTime = adjustedDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
         
         if (isPastReservation(dateStr, timeStr)) {
             const currentYear = new Date().getFullYear();
-            const reservationYear = combinedDate.getFullYear();
+            const reservationYear = adjustedDate.getFullYear();
             return `${formattedDate}${currentYear !== reservationYear ? `, ${reservationYear}` : ''}`;
         }
         
         return `${formattedDate} at ${formattedTime}`;
     }
+    
 
     return (
         <div className="index-item-reservations-container">

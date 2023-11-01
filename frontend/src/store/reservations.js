@@ -4,6 +4,7 @@ import csrfFetch from "./csrf";
 export const RECEIVE_RESERVATIONS = 'reservations/RECEIVE_RESERVATIONS';
 export const RECEIVE_RESERVATION = 'reservations/RECEIVE_RESERVATION';
 export const REMOVE_RESERVATION = 'reservations/REMOVE_RESERVATION';
+export const CREATE_RESERVATION_FAILURE = "reservations/CREATE_RESERVATION_FAILURE";
 
 export const receiveReservations = reservations => ({
     type: RECEIVE_RESERVATIONS,
@@ -18,6 +19,11 @@ export const receiveReservation = reservation => ({
 export const removeReservation = reservationId => ({
     type: REMOVE_RESERVATION,
     reservationId
+});
+
+export const reservationCreationFailure = (error) => ({
+    type: CREATE_RESERVATION_FAILURE,
+    error
 });
 
 // Selectors
@@ -58,7 +64,12 @@ export const createReservation = reservation => async dispatch => {
     if (res.ok) {
         const newReservation = await res.json();
         dispatch(receiveReservation(newReservation));
-    } 
+        return true;
+    } else {
+        const errorData = await res.json();
+        dispatch(reservationCreationFailure(errorData.message));
+        return false;
+    }
 }
 
 export const updateReservation = reservation => async dispatch => {

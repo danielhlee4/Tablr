@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 import { createReservation } from '../../store/reservations';
 import { convertTo12HourFormat } from '../../util/timeUtils';
 import './Reservations.css';
@@ -19,6 +19,7 @@ function ReservationBox() {
     const timeOptions = generateTimes();
     const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
     const sessionUser = useSelector(state => state.session.user);
+    const history = useHistory();
 
     // Set default time value to next half hour increment
     const calculateRoundedUpTime = () => {
@@ -122,7 +123,7 @@ function ReservationBox() {
         setSelectedTimeSlot(selectedTime);
     }
 
-    const handleConfirmClick = () => {
+    const handleConfirmClick = async () => {
         const numberOfPeople = parseInt(partySize.split(' ')[0]); // Convert '1 person' to 1
         const reservationDetails = {
             reservation: {
@@ -132,7 +133,14 @@ function ReservationBox() {
                 restaurantId: restaurantId
             }
         };
-        dispatch(createReservation(reservationDetails));
+        
+        const wasSuccessful = await dispatch(createReservation(reservationDetails));
+        if (wasSuccessful) {
+            history.push(`/users/${sessionUser.id}/reservations`);
+        } else {
+            // You can optionally handle/display the error here.
+        }
+
         setShowTimes(false);
         setSelectedTimeSlot(null);
     };

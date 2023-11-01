@@ -99,7 +99,6 @@ function RestaurantIndexItem({ restaurant }) {
         event.preventDefault();
         event.stopPropagation();
         history.push(`/restaurants/${restaurant.id}`, { selectedTime: time });
-        console.log("time:", time)
     };
 
     const containerClasses = `restaurant-container ${isRaised ? 'raised' : ''} ${isClicked ? 'clicked' : ''}`;
