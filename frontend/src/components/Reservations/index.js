@@ -9,6 +9,7 @@ function ReservationIndex() {
     const dispatch = useDispatch();
     const { userId } = useParams();
     const reservations = useSelector(getReservations);
+    const currentUser = useSelector(state => state.session.user);
 
     useEffect(() => {
         if (!reservations.length) {
@@ -38,6 +39,7 @@ function ReservationIndex() {
 
     return (
         <div className="index-reservations-wrapper">
+            <h1 className="index-reservations-title">{currentUser.firstName} {currentUser.lastName}'s Tablr Reservations</h1>
             
             { upcomingReservations.length > 0 &&
                 <div className="index-upcoming-reservations-container">

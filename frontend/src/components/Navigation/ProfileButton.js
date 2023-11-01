@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 
@@ -40,6 +41,9 @@ function ProfileButton({ user }) {
           <ul className="profile-dropdown">
             <li id="greeting">Hello, {user.firstName}!</li>
             <div id="divider"></div>
+            <li>
+              <Link to={`/users/${user.id}/reservations`}>My Reservations</Link>
+            </li>
             <li>
               <a href="https://www.linkedin.com">My LinkedIn</a>
             </li>
