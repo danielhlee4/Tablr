@@ -27,24 +27,26 @@ function ReservationIndex() {
     const currentDate = new Date();
 
     const upcomingReservations = sortedUserReservations.filter(reservation => {
-        const reservationDate = new Date(reservation.date);
-        return reservationDate >= currentDate;
+        const reservationDateTime = new Date(reservation.date + 'T' + reservation.time.slice(11,19));
+        return reservationDateTime >= currentDate;
     });
-
+    
     const pastReservations = sortedUserReservations.filter(reservation => {
-        const reservationDate = new Date(reservation.date);
-        return reservationDate < currentDate;
+        const reservationDateTime = new Date(reservation.date + 'T' + reservation.time.slice(11,19));
+        return reservationDateTime < currentDate;
     });
 
     return (
         <div className="index-reservations-wrapper">
             
-            <div className="index-upcoming-reservations-container">
-                <h2 className="index-reservations-title">Upcoming reservations</h2>
-                {upcomingReservations.map(reservation => (
-                    <ReservationIndexItem key={reservation.id} reservation={reservation} />
-                ))}
-            </div>
+            { upcomingReservations.length > 0 &&
+                <div className="index-upcoming-reservations-container">
+                    <h2 className="index-reservations-title">Upcoming reservations</h2>
+                    {upcomingReservations.map(reservation => (
+                        <ReservationIndexItem key={reservation.id} reservation={reservation} />
+                    ))}
+                </div>
+            }
             
             <div className="index-past-reservations-container">
                 <h2 className="index-reservations-title">Past reservations</h2>
