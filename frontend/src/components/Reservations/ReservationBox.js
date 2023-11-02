@@ -160,7 +160,7 @@ function ReservationBox() {
         
         let response;
         if (isEditMode) {
-            reservationDetails.reservationId = reservationId;
+            reservationDetails.id = reservationId;
             response = await dispatch(updateReservation(reservationDetails));
             console.log("edit:", reservationDetails)
         } else {
