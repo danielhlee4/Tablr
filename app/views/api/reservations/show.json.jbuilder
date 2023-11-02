@@ -7,6 +7,7 @@ json.user do
 end
 
 json.restaurant do
+  json.id @reservation.restaurant.id
   json.name @reservation.restaurant.name
   json.photoUrl (@reservation.restaurant.photo.attached? ? @reservation.restaurant.photo.url : nil)
 end

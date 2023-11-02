@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import RestaurantIndex from './components/Restaurants';
 import RestaurantShow from './components/Restaurants/RestaurantShow';
 import ReservationIndex from './components/Reservations/index';
+import ReservationEdit from './components/Reservations/ReservationEdit';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
                 <Route exact path="/" component={RestaurantIndex} />
                 <Route exact path="/restaurants/:restaurantId" component={RestaurantShow} />
                 <Route exact path="/users/:userId/reservations" component={ReservationIndex} />
+                <Route exact path="/users/:userId/reservations/:reservationId/edit" component={ReservationEdit} />
               </Switch>
             </div>  
           <Footer />

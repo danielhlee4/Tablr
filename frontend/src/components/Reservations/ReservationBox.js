@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
-import { createReservation, getReservationCreationError } from '../../store/reservations';
-import { convertTo12HourFormat } from '../../util/timeUtils';
+import { createReservation, updateReservation, fetchReservation, getReservationCreationError } from '../../store/reservations';
+import { convertTo12HourFormat, extractTimeFromISOString } from '../../util/timeUtils';
 import './Reservations.css';
 
 function ReservationBox() {
     const dispatch = useDispatch();
     const location = useLocation();
-    const { restaurantId } = useParams();
+    const { restaurantId, userId, reservationId } = useParams();
     const currentUser = useSelector(state => state.session.user);
     const [partySize, setPartySize] = useState('2');
     const [times, setTimes] = useState('');
@@ -20,6 +20,28 @@ function ReservationBox() {
     const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
     const reservationCreationError = useSelector(getReservationCreationError);
     const history = useHistory();
+    const isEditMode = location.pathname.includes('/edit');
+    const [fetchedRestaurantId, setFetchedRestaurantId] = useState(null);
+
+    useEffect(() => {
+        if (isEditMode) {
+            dispatch(fetchReservation(reservationId))
+                .then(data => {
+                    if (data) {
+                        console.log('data', data)
+                        setPartySize(data.partySize.toString());
+                        setDate(data.date);
+                        setTime(extractTimeFromISOString(data.time));
+                        setFetchedRestaurantId(data.restaurant.id);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching reservation:', error);
+                });
+        }
+    }, [isEditMode, dispatch, reservationId]);
+
+    const effectiveRestaurantId = isEditMode ? fetchedRestaurantId : restaurantId;
 
     // Set default time value to next half hour increment
     const calculateRoundedUpTime = () => {
@@ -44,6 +66,8 @@ function ReservationBox() {
 
     // Recalculate the time if the component is still mounted after a half-hour
     useEffect(() => {
+        if (isEditMode) return;
+
         const now = new Date();
         const minutesToNextHalfHour = 30 - (now.getMinutes() % 30);
         const msToNextHalfHour = minutesToNextHalfHour * 60 * 1000;
@@ -130,11 +154,19 @@ function ReservationBox() {
                 partySize: numberOfPeople,
                 date: date,
                 time: convertTo24HourFormat(selectedTimeSlot),
-                restaurantId: restaurantId
+                restaurantId: effectiveRestaurantId
             }
         };
         
-        const response = await dispatch(createReservation(reservationDetails));
+        let response;
+        if (isEditMode) {
+            reservationDetails.reservationId = reservationId;
+            response = await dispatch(updateReservation(reservationDetails));
+            console.log("edit:", reservationDetails)
+        } else {
+            response = await dispatch(createReservation(reservationDetails));
+            console.log("create:", reservationDetails)
+        }
     
         if (response && response.ok) {
             history.push(`/users/${currentUser.id}/reservations`);
@@ -183,13 +215,14 @@ function ReservationBox() {
             handleTimeClick(location.state.selectedTime);
         }
     }, [location]);
-    
 
     return (
-        <div className="reservation-box-container">
-            <h2 className="reservation-box-heading">Make a reservation</h2>
-            {error && <div className="error-message">{error}</div>}
-            <label className="reservation-box-label">
+        <div className={isEditMode ? "reservation-edit-container" : "reservation-box-container"}>
+            <h2 className={isEditMode ? "reservation-edit-heading" : "reservation-box-heading"}>
+                {isEditMode ? 'Modify Reservation' : 'Make a Reservation'}
+            </h2>
+            {error && <div className={isEditMode ? "edit-error-message" : "error-message"}>{error}</div>}
+            <label className={isEditMode ? "reservation-edit-label" : "reservation-box-label"}>
                 Party Size
                 <select value={partySize} onChange={e => {
                     setPartySize(e.target.value);
@@ -207,8 +240,8 @@ function ReservationBox() {
                 </select>
             </label>
             
-            <div className="date-time-container">
-                <label className="reservation-box-label date-label">
+            <div className={isEditMode ? "edit-date-time-container" : "date-time-container"}>
+                <label className={isEditMode ? "reservation-edit-label date-edit-label" : "reservation-box-label date-label"}>
                     Date
                     <input type="date" min={new Date().toISOString().split('T')[0]} value={date} onChange={e => {
                         setDate(e.target.value);
@@ -216,7 +249,7 @@ function ReservationBox() {
                     }} />
                 </label>
                 
-                <label className="reservation-box-label time-label">
+                <label className={isEditMode ? "reservation-edit-label time-edit-label" : "reservation-box-label time-label"}>
                     Time
                     <select 
                         value={convertTo12HourFormat(time)} 
@@ -234,10 +267,10 @@ function ReservationBox() {
                 </label>
             </div>
 
-            <button className="reservation-box-find-time-btn" onClick={handleSubmit}>Find a time</button>
+            <button className={isEditMode ? "reservation-edit-find-time-btn" : "reservation-box-find-time-btn"} onClick={handleSubmit}>Find a time</button>
 
             {showTimes && (
-                <div className="reservation-box-available-times">
+                <div className={isEditMode ? "reservation-edit-available-times" : "reservation-box-available-times"}>
                     {times.map((t, index) => {
                         // Convert 't' from "HH:mm" to 12-hour format with AM/PM
                         const [hour, minute] = t.split(':');
@@ -256,8 +289,8 @@ function ReservationBox() {
             )}
 
             {currentUser && selectedTimeSlot && (
-                <button className="reservation-box-confirm-btn" onClick={handleConfirmClick}>
-                    Confirm Reservation
+                <button className={isEditMode ? "reservation-edit-confirm-btn" : "reservation-box-confirm-btn"} onClick={handleConfirmClick}>
+                    {isEditMode ? 'Modify Reservation' : 'Confirm Reservation'}
                 </button>
             )}
         </div>

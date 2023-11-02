@@ -13,10 +13,8 @@ function ReservationIndex() {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        if (!reservations.length) {
-            setIsLoading(true);
-            dispatch(fetchReservations()).then(() => setIsLoading(false));
-        }
+        setIsLoading(true);
+        dispatch(fetchReservations()).then(() => setIsLoading(false));
     }, [dispatch]);
 
     const userReservations = (reservations || []).filter(reservation => reservation && reservation.user && reservation.user.id.toString() === userId);

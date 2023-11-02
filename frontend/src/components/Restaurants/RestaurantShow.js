@@ -26,15 +26,18 @@ function RestaurantShow() {
             const navbarHeight = 50;
             const triggerPoint = window.scrollY + navbarHeight;
         
-            const overviewTop = overviewRef.current.offsetTop;
-            const reviewsTop = reviewsRef.current.offsetTop;
+            if (overviewRef.current && reviewsRef.current) {
+                const overviewTop = overviewRef.current.offsetTop;
+                const reviewsTop = reviewsRef.current.offsetTop;
         
-            if (triggerPoint >= overviewTop && triggerPoint < reviewsTop) {
-                setActiveItem('overview');
-            } else if (triggerPoint >= reviewsTop) {
-                setActiveItem('reviews');
+                if (triggerPoint >= overviewTop && triggerPoint < reviewsTop) {
+                    setActiveItem('overview');
+                } else if (triggerPoint >= reviewsTop) {
+                    setActiveItem('reviews');
+                }
             }
         };
+        
         
         window.addEventListener('scroll', handleScroll, { passive: true });
         

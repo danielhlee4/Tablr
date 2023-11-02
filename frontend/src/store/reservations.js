@@ -56,6 +56,9 @@ export const fetchReservation = reservationId => async dispatch => {
     if (res.ok) {
         const reservation = await res.json();
         dispatch(receiveReservation(reservation));
+        return reservation;
+    } else {
+        throw new Error('Failed to fetch reservation');
     }
 }
 

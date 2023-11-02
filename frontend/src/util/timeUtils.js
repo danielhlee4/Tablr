@@ -29,3 +29,9 @@ export function adjustForDST(dateStr, timeStr) {
 
     return combinedDate;
 }
+
+export function extractTimeFromISOString(isoString) {
+    const timePart = isoString.split('T')[1];
+    const [hours, minutes] = timePart.split(':');
+    return `${hours}:${minutes}`;
+}
