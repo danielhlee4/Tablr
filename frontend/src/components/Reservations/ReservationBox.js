@@ -28,7 +28,6 @@ function ReservationBox() {
             dispatch(fetchReservation(reservationId))
                 .then(data => {
                     if (data) {
-                        console.log('data', data)
                         setPartySize(data.partySize.toString());
                         setDate(data.date);
                         setTime(extractTimeFromISOString(data.time));
@@ -135,9 +134,7 @@ function ReservationBox() {
             let hour = i > 12 ? i - 12 : i;
             let period = i < 12 || i === 24 ? 'AM' : 'PM';
             times.push(`${hour}:00 ${period}`);
-            if (i !== 21) { // Exclude the half-hour for 9:30 PM
-                times.push(`${hour}:30 ${period}`);
-            }
+            times.push(`${hour}:30 ${period}`);
         }
         return times;
     }
@@ -162,10 +159,8 @@ function ReservationBox() {
         if (isEditMode) {
             reservationDetails.id = reservationId;
             response = await dispatch(updateReservation(reservationDetails));
-            console.log("edit:", reservationDetails)
         } else {
             response = await dispatch(createReservation(reservationDetails));
-            console.log("create:", reservationDetails)
         }
     
         if (response && response.ok) {
