@@ -1,9 +1,19 @@
 import { Link } from 'react-router-dom';
 import { adjustForDST } from '../../util/timeUtils';
 import badroman from '../../assets/badroman.webp'
+import { useDispatch } from 'react-redux';
+import { deleteReservation } from '../../store/reservations';
 import './Reservations.css';
 
 function ReservationIndexItem({ reservation }) {
+    const dispatch = useDispatch();
+
+    const handleCancel = async () => {
+        const confirmed = window.confirm("Are you sure you want to cancel this reservation?");
+        if (confirmed) {
+            await dispatch(deleteReservation(reservation.id));
+        }
+    };
     
     function isPastReservation(dateStr, timeStr) {
         const combinedDate = adjustForDST(dateStr, timeStr);
@@ -72,7 +82,7 @@ function ReservationIndexItem({ reservation }) {
                         <button className="index-item-reservation-action">Leave a review</button> : 
                         <>
                             <button className="index-item-reservation-action">Modify</button>
-                            <button className="index-item-reservation-action">Cancel</button>
+                            <button className="index-item-reservation-action" onClick={handleCancel}>Cancel</button>
                         </>
                     }
                 </div>

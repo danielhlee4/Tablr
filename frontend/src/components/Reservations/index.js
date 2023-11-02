@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchReservations, getReservations } from '../../store/reservations';
@@ -10,10 +10,12 @@ function ReservationIndex() {
     const { userId } = useParams();
     const reservations = useSelector(getReservations);
     const currentUser = useSelector(state => state.session.user);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (!reservations.length) {
-          dispatch(fetchReservations());
+            setIsLoading(true);
+            dispatch(fetchReservations()).then(() => setIsLoading(false));
         }
     }, [dispatch]);
 
@@ -36,6 +38,10 @@ function ReservationIndex() {
         const reservationDateTime = new Date(reservation.date + 'T' + reservation.time.slice(11,19));
         return reservationDateTime < currentDate;
     });
+
+    if (isLoading) {
+        return <div className="loading-indicator">Loading...</div>;
+    }
 
     return (
         <div className="index-reservations-wrapper">

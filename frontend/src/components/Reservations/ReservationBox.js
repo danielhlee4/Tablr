@@ -144,7 +144,7 @@ function ReservationBox() {
                 setError(errorData.message);
             }
         } else {
-            setError("This time is in the past or conflicts with another current reservation"); 
+            setError("This time conflicts with another current reservation or is in the past"); 
         }
     
         setShowTimes(false);
