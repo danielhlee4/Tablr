@@ -35,3 +35,26 @@ export function extractTimeFromISOString(isoString) {
     const [hours, minutes] = timePart.split(':');
     return `${hours}:${minutes}`;
 }
+
+export function isPastReservation(dateStr, timeStr) {
+    const combinedDate = adjustForDST(dateStr, timeStr);
+    const now = new Date();
+    return combinedDate < now;
+}
+
+export function formatDateAndTime(dateStr, timeStr) {
+    const adjustedDate = adjustForDST(dateStr, timeStr);
+    const formattedDate = isPastReservation(dateStr, timeStr) ?
+        adjustedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) :
+        adjustedDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+
+    const formattedTime = adjustedDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+    
+    if (isPastReservation(dateStr, timeStr)) {
+        const currentYear = new Date().getFullYear();
+        const reservationYear = adjustedDate.getFullYear();
+        return `${formattedDate}${currentYear !== reservationYear ? `, ${reservationYear}` : ''}`;
+    }
+    
+    return `${formattedDate} at ${formattedTime}`;
+}

@@ -3,6 +3,7 @@ import { adjustForDST } from '../../util/timeUtils';
 import badroman from '../../assets/badroman.webp'
 import { useDispatch } from 'react-redux';
 import { deleteReservation } from '../../store/reservations';
+import { formatDateAndTime, isPastReservation } from '../../util/timeUtils';
 import './Reservations.css';
 
 function ReservationIndexItem({ reservation }) {
@@ -17,32 +18,8 @@ function ReservationIndexItem({ reservation }) {
     };
 
     const handleModify = () => {
-        history.push(`/users/${reservation.userId}/reservations/${reservation.id}/edit`);
+        history.push(`/users/${reservation.user.id}/reservations/${reservation.id}/edit`);
     };
-    
-    function isPastReservation(dateStr, timeStr) {
-        const combinedDate = adjustForDST(dateStr, timeStr);
-        const now = new Date();
-        return combinedDate < now;
-    }
-    
-    function formatDateAndTime(dateStr, timeStr) {
-        const adjustedDate = adjustForDST(dateStr, timeStr);
-        const formattedDate = isPastReservation(dateStr, timeStr) ?
-            adjustedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) :
-            adjustedDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-    
-        const formattedTime = adjustedDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-        
-        if (isPastReservation(dateStr, timeStr)) {
-            const currentYear = new Date().getFullYear();
-            const reservationYear = adjustedDate.getFullYear();
-            return `${formattedDate}${currentYear !== reservationYear ? `, ${reservationYear}` : ''}`;
-        }
-        
-        return `${formattedDate} at ${formattedTime}`;
-    }
-    
 
     return (
         <div className="index-item-reservations-container">
