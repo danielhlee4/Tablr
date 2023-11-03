@@ -9,14 +9,13 @@ require "open-uri"
 ApplicationRecord.transaction do 
     puts "Destroying tables..."
     # Unnecessary if using `rails db:seed:replant`
-    User.destroy_all
-    Restaurant.destroy_all
-    Reservation.destroy_all
+    [User, Restaurant, Reservation, Review].each(&:destroy_all)
   
     puts "Resetting primary keys..."
     # For easy testing, so that after seeding, the first `User` has `id` of 1
-    ApplicationRecord.connection.reset_pk_sequence!('users')
-    ApplicationRecord.connection.reset_pk_sequence!('restaurants')
+    ['users', 'restaurants', 'reservations', 'reviews'].each do |table_name|
+      ApplicationRecord.connection.reset_pk_sequence!(table_name)
+    end
 end  
 
 puts "Creating users..."
@@ -535,6 +534,5 @@ napkin_burger.photo.attach(
   io: URI.open('https://tablr-seeds.s3.amazonaws.com/5napkinburger.webp'),
   filename: "restaurant_5_napkin_burger.webp"
 )
-
 
 puts "Done!"
