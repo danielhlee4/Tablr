@@ -87,17 +87,28 @@ export const createReservation = reservation => async dispatch => {
 
 
 export const updateReservation = reservation => async dispatch => {
-    const res = await csrfFetch(`/api/reservations/${reservation.id}`, {
-        method: 'PATCH',
-        body: JSON.stringify(reservation),
-        headers: { 'Content-Type': 'application/json' }
-    });
+    try {
+        const res = await csrfFetch(`/api/reservations/${reservation.id}`, {
+            method: 'PATCH',
+            body: JSON.stringify(reservation),
+            headers: { 'Content-Type': 'application/json' }
+        });
 
-    if (res.ok) {
-        const updatedReservation = await res.json();
-        dispatch(receiveReservation(updatedReservation));
+        const data = await res.json();
+
+        if (res.ok) {
+            dispatch(receiveReservation(data));
+        } else {
+            dispatch(reservationCreationFailure(data.errors.join(', ')));
+        }
+        return res;
+    } catch (error) {
+        console.error("Error during reservation update:", error);
+        dispatch(reservationCreationFailure("An unexpected error occurred."));
+        return null;
     }
-}
+};
+
 
 export const deleteReservation = reservationId => async dispatch => {
     const res = await csrfFetch(`/api/reservations/${reservationId}`, {

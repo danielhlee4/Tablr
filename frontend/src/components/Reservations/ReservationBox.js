@@ -262,7 +262,11 @@ function ReservationBox() {
                 </label>
             </div>
 
-            <button className={isEditMode ? "reservation-edit-find-time-btn" : "reservation-box-find-time-btn"} onClick={handleSubmit}>Find a time</button>
+            <button 
+                className={isEditMode ? "reservation-edit-find-time-btn" : "reservation-box-find-time-btn"} 
+                onClick={handleSubmit}>
+                {isEditMode ? 'Find a new table' : 'Find a time'}
+            </button>
 
             {showTimes && (
                 <div className={isEditMode ? "reservation-edit-available-times" : "reservation-box-available-times"}>

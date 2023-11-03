@@ -1,5 +1,6 @@
-/* Reservation box */
-.reservation-box-container {
+/* Reservation box and Reservation edit */
+.reservation-box-container,
+.reservation-edit-container {
     width: 320px;
     height: 350px;
     padding: 15px;
@@ -10,7 +11,8 @@
     box-shadow: 0px 2px 6px rgba(0, 0.2, 0.2, 0.2);
 }
 
-.reservation-box-heading {
+.reservation-box-heading,
+.reservation-edit-heading {
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 10px;
@@ -19,22 +21,26 @@
     padding-bottom: 10px;
 }
 
-.error-message {
+.error-message,
+.edit-error-message {
     color: red;
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.reservation-box-label {
+.reservation-box-label,
+.reservation-edit-label {
     display: block;
     margin: 10px 0;
     font-size: 14px;
     font-weight: 400;
 }
 
-.reservation-box-label select, 
-.reservation-box-label input[type="date"] {
+.reservation-box-label select,
+.reservation-edit-label select,
+.reservation-box-label input[type="date"],
+.reservation-edit-label input[type="date"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -46,13 +52,17 @@
     padding-left: 0;
 }
 
-.reservation-box-label select {
+.reservation-box-label select,
+.reservation-edit-label select {
     cursor: pointer;
 }
 
 .reservation-box-confirm-btn,
+.reservation-edit-confirm-btn,
 .reservation-box-find-time-btn,
-.reservation-box-available-times button {
+.reservation-edit-find-time-btn,
+.reservation-box-available-times button,
+.reservation-edit-available-times button {
     font: inherit;
     border: none;
     cursor: pointer;
@@ -63,49 +73,62 @@
     transition: background-color 0.3s;
 }
 
-.reservation-box-confirm-btn {
+.reservation-box-confirm-btn,
+.reservation-edit-confirm-btn {
     background-color: #1c2c54;
 }
 
-.reservation-box-available-times button {
+.reservation-box-available-times button,
+.reservation-edit-available-times button {
     padding: 8px 0px;
     font-size: 13px;
 }
 
 .reservation-box-confirm-btn,
-.reservation-box-find-time-btn {
+.reservation-edit-confirm-btn,
+.reservation-box-find-time-btn,
+.reservation-edit-find-time-btn {
     width: 100%;
     padding: 15px 0px
 }
 
 .reservation-box-find-time-btn:hover,
-.reservation-box-available-times button:hover {
+.reservation-edit-find-time-btn:hover,
+.reservation-box-available-times button:hover,
+.reservation-edit-available-times button:hover {
     background-color: #99151e;
 }
 
-.reservation-box-confirm-btn:hover {
+.reservation-box-confirm-btn:hover,
+.reservation-edit-confirm-btn:hover {
     background-color: #384870;
 }
 
 .reservation-box-confirm-btn:active,
+.reservation-edit-confirm-btn:active,
 .reservation-box-find-time-btn:active,
-.reservation-box-available-times button:active {
+.reservation-edit-find-time-btn:active,
+.reservation-box-available-times button:active,
+.reservation-edit-available-times button:active {
     background-color: rgb(241, 242, 244);
     color: rgb(111, 115, 123);
 }
 
-.reservation-box-confirm-btn {
+.reservation-box-confirm-btn,
+.reservation-edit-confirm-btn {
     margin-top: 11px;
 }
 
-.reservation-box-available-times {
+.reservation-box-available-times,
+.reservation-edit-available-times {
     margin-top: 15px;
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
 }
 
-.date-time-container {
+.date-time-container,
+.edit-date-time-container {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -114,43 +137,51 @@
     margin-bottom: 10px;
 }
 
-.date-label, .time-label {
+.date-label, .time-label, .date-edit-label, .time-edit-label {
     flex: 1;
     margin: 0;
     padding: 0;
 }
 
-.time-label {
+.time-label, .time-edit-label {
     margin-right: 0;
 }
 
-.date-label input[type="date"] {
+.date-label input[type="date"],
+.date-edit-label input[type="date"] {
     width: 80%;
     box-sizing: border-box;
 }
 
 .date-time-container .date-label,
-.date-time-container .time-label {
+.edit-date-time-container .date-edit-label,
+.date-time-container .time-label,
+.edit-date-time-container .time-edit-label {
     width: 49%;
     margin-right: 2%;
     box-sizing: border-box;
 }
 
-.date-time-container .time-label {
+.date-time-container .time-label,
+.edit-date-time-container .time-edit-label {
     margin-right: 0;
 }
 
-.date-label input {
+.date-label input,
+.date-edit-label input {
     width: 80%;
     margin-right: 10px;
 }
 
-.time-label select {
+.time-label select,
+.time-edit-label select {
     width: 100%;
 }
 
 .date-label input[type="date"],
-.time-label select {
+.date-edit-label input[type="date"],
+.time-label select,
+.time-edit-label select {
     padding: 5px 0px;
     font-size: 14px;
     line-height: 1.5;
