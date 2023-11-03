@@ -21,6 +21,7 @@ class Reservation < ApplicationRecord
 
     belongs_to :user
     belongs_to :restaurant
+    has_many :reviews, dependent: :destroy
 
     def validate_time_slot
         if time
