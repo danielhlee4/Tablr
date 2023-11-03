@@ -14,19 +14,28 @@ function ReservationEdit() {
     }
 
     return(
-        <>
-            <div className="edit-current-reservation-details">
+        <div className="edit-reservation-page-container">
+            <div className="edit-current-reservation-container">
+                <h2 className="edit-current-reservation-title">Your current reservation</h2>
                 <img 
-                    // src={reservation.photoUrl} 
+                    // src={reservation.restauraunt.photoUrl} 
                     src={badroman}
                     alt={`Image of ${reservation.restaurant.name}`} 
                 />
-                <span>{reservation.restaurant.name}</span>
-                <span>{formatDateAndTime(reservation.date, reservation.time)}</span>
-                <span>{reservation.partySize} people</span>
+                <h3 className="edit-current-reservation-name">{reservation.restaurant.name}</h3>
+                <div className="edit-current-reservation-details">
+                    <span className="edit-reservation-icon">
+                        <i className="fa-sharp fa-light fa-calendar"></i>
+                    </span>
+                    <span>{formatDateAndTime(reservation.date, reservation.time)}</span>
+                    <span className="edit-reservation-icon">
+                        <i className="fa-light fa-user-group"></i>
+                    </span>
+                    <span>{reservation.partySize} people</span>
+                </div>
             </div>
             <ReservationBox />
-        </>
+        </div>
     )
 };
 
