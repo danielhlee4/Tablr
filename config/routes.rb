@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'reviews/index'
+  get 'reviews/create'
   get 'restaurants/index'
   get 'restaurants/show'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,8 +15,10 @@ Rails.application.routes.draw do
     resources :users, only: :create
     resource :session, only: [:show, :create, :destroy]
     resources :restaurants, only: [:index, :show]
+      resources :reviews, only: [:index]
+    end
     resources :reservations, only: [:index, :create, :show, :update, :destroy]
-    resources :reviews, only: [:index, :create]
+    resources :reviews, only: [:create]
   end
 
   get '*path', to: "static_pages#frontend_index"

@@ -30,10 +30,12 @@ class Review < ApplicationRecord
         user = self.reservation.user
         restaurant = self.reservation.restaurant
 
-        existing_review = Review.joins(:reservation)
-                                .where(reservations: { user_id: user.id, restaurant_id: restaurant.id })
-                                .where.not(id: self.id) # Exclude the current review if it's an update
-                                .exists?
+        # Check for any existing review for the restaurant by this user.
+        existing_review = Review.joins(reservation: :restaurant)
+                            .where(reservations: { user_id: user.id })
+                            .where('reservations.restaurant_id = ?', restaurant.id)
+                            .where.not(id: self.id) # Exclude the current review if it's an update
+                            .exists?
 
         errors.add(:base, "You have already reviewed this restaurant.") if existing_review
     end
