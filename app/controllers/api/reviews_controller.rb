@@ -1,5 +1,5 @@
 class Api::ReviewsController < ApplicationController
-  before_action :require_login
+  before_action :require_login, except: [:index]
   
   def index
     @restaurant = Restaurant.find(params[:restaurant_id])
