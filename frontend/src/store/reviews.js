@@ -1,3 +1,5 @@
+import csrfFetch from "./csrf";
+
 // Action constant
 export const RECEIVE_REVIEWS = 'reviews/RECEIVE_REVIEWS';
 export const RECEIVE_REVIEW = 'reviews/RECEIVE_REVIEW';

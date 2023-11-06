@@ -6,6 +6,7 @@ import RestaurantIndex from './components/Restaurants';
 import RestaurantShow from './components/Restaurants/RestaurantShow';
 import ReservationIndex from './components/Reservations/index';
 import ReservationEdit from './components/Reservations/ReservationEdit';
+import ReviewCreate from './components/Reviews/ReviewCreate';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
                 <Route exact path="/restaurants/:restaurantId" component={RestaurantShow} />
                 <Route exact path="/users/:userId/reservations" component={ReservationIndex} />
                 <Route exact path="/users/:userId/reservations/:reservationId/edit" component={ReservationEdit} />
+                <Route exact path="/users/:userId/reservations/:reservationId/review/new" component={ReviewCreate} />
               </Switch>
             </div>  
           <Footer />
