@@ -1,0 +1,21 @@
+.create-star-rating {
+    display: flex;
+    align-items: center;
+}
+
+.create-star-rating button {
+    background: none;
+    border: none;
+    padding: 0;
+    text-decoration: none;
+}
+
+.create-star-rating .create-star {
+    color: #c2c9d6;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+  
+.create-star-rating button.create-on .create-star {
+    color: #da3743;
+}

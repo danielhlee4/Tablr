@@ -10,7 +10,7 @@ const StarRating = ({ category, onChangeRating }) => {
   };
 
   return (
-    <div className="star-rating">
+    <div className="create-star-rating">
       <div>{category}</div>
       {[...Array(5)].map((star, index) => {
         index += 1;
@@ -18,11 +18,11 @@ const StarRating = ({ category, onChangeRating }) => {
           <button
             type="button"
             key={index}
-            className={index <= rating ? 'on' : 'off'}
+            className={index <= rating ? 'create-on' : 'create-off'}
             onClick={() => handleClick(index)}
             aria-label={`Rate ${category} ${index} stars out of 5`}
           >
-            <span className="star">&#9733;</span>
+            <span className="create-star">&#9733;</span>
           </button>
         );
       })}
