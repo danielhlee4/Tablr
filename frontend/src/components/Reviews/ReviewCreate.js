@@ -1,16 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import StarRating from './StarRating';
-import { createReview } from '../../store/reviews';
-import { getReservation } from '../../store/reservations';
+import { createReview, fetchReviews } from '../../store/reviews';
+import { getReservation, fetchReservation } from '../../store/reservations';
 import './Reviews.css';
 
 function ReviewCreate() {
-    const { reservationId } = useParams()
-    const reservation = useSelector(state => getReservation(reservationId)(state));
-    const restaurantId = 1;
+    const { reservationId } = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
+    const reservation = useSelector(state => getReservation(reservationId)(state));
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                await dispatch(fetchReservation(reservationId));
+                setIsLoading(false);
+            } catch (e) {
+                setError(e.message);
+            }
+        };
+
+        loadData();
+    }, [dispatch, reservationId]);
+
     const [reviewBody, setReviewBody] = useState('');
     const [ratings, setRatings] = useState({
         overallRating: 0,
@@ -24,26 +40,48 @@ function ReviewCreate() {
         setRatings({ ...ratings, [category]: newRating });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
+    if (!reservation) {
+        return <div>Reservation not found.</div>;
+    }
+
+    const restaurantId = reservation.restaurant.id;
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
         const reviewData = {
             review: {
                 ...ratings,
                 body: reviewBody,
                 reservationId,
-            }
+                restaurantId,
+            },
         };
-        dispatch(createReview(restaurantId, reviewData));
+        
+        try {
+            await dispatch(createReview(reviewData));
+            // Handle success, maybe clear the form or redirect the user
+        } catch (error) {
+            console.error("Failed to submit review:", error.message);
+        }
     };
+      
 
     return(
         <form onSubmit={handleSubmit}>
-            <StarRating category="Overall" onChangeRating={changeRating} />
-            <StarRating category="Food" onChangeRating={changeRating} />
-            <StarRating category="Service" onChangeRating={changeRating} />
-            <StarRating category="Ambiance" onChangeRating={changeRating} />
-            <StarRating category="Value" onChangeRating={changeRating} />
+            <StarRating category="overallRating" onChangeRating={changeRating} />
+            <StarRating category="foodRating" onChangeRating={changeRating} />
+            <StarRating category="serviceRating" onChangeRating={changeRating} />
+            <StarRating category="ambianceRating" onChangeRating={changeRating} />
+            <StarRating category="valueRating" onChangeRating={changeRating} />
             <textarea
                 className="review-textarea"
                 value={reviewBody}
