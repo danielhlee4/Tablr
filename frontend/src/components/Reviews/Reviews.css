@@ -24,3 +24,9 @@
 .submit-review-btn:hover {
     background-color: #0056e8;
 }
+
+.review-error-message {
+    color: red;
+    margin: 10px 0;
+    display: block;
+}

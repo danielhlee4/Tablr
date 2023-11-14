@@ -44,10 +44,6 @@ function ReviewCreate() {
         return <div>Loading...</div>;
     }
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
-
     if (!reservation) {
         return <div>Reservation not found.</div>;
     }
@@ -68,6 +64,7 @@ function ReviewCreate() {
         
         try {
             await dispatch(createReview(reviewData));
+            setError(null);
             history.push(`/restaurants/${restaurantId}`);
         } catch (errorResponse) {
             const errorData = await errorResponse.json();
@@ -75,27 +72,25 @@ function ReviewCreate() {
         }
     };
       
-    return(
-        <>
-            <form onSubmit={handleSubmit}>
-                <StarRating label="Overall" category="overallRating" onChangeRating={changeRating} />
-                <StarRating label="Food" category="foodRating" onChangeRating={changeRating} />
-                <StarRating label="Service" category="serviceRating" onChangeRating={changeRating} />
-                <StarRating label="Ambiance" category="ambianceRating" onChangeRating={changeRating} />
-                <StarRating label="Value" category="valueRating" onChangeRating={changeRating} />
-                <textarea
-                    className="review-textarea"
-                    value={reviewBody}
-                    onChange={(e) => setReviewBody(e.target.value)}
-                    placeholder="Your review must be at least 10 characters"
-                    minLength="10"
-                    required
-                />
-                <button type="submit" className="submit-review-btn">Submit</button>
-            </form>
+    return (
+        <form onSubmit={handleSubmit}>
             {error && <div className="review-error-message">{error}</div>}
-        </>
-    )
+            <StarRating label="Overall" category="overallRating" onChangeRating={changeRating} />
+            <StarRating label="Food" category="foodRating" onChangeRating={changeRating} />
+            <StarRating label="Service" category="serviceRating" onChangeRating={changeRating} />
+            <StarRating label="Ambiance" category="ambianceRating" onChangeRating={changeRating} />
+            <StarRating label="Value" category="valueRating" onChangeRating={changeRating} />
+            <textarea
+                className="review-textarea"
+                value={reviewBody}
+                onChange={(e) => setReviewBody(e.target.value)}
+                placeholder="Your review must be at least 10 characters"
+                minLength="10"
+                required
+            />
+            <button type="submit" className="submit-review-btn">Submit</button>
+        </form>
+    );
 }
 
 export default ReviewCreate;
