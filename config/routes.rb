@@ -10,11 +10,9 @@ Rails.application.routes.draw do
     get "restaurants/search", to: "restaurants#search"
     resources :users, only: :create
     resource :session, only: [:show, :create, :destroy]
-    resources :restaurants, only: [:index, :show] do
-      resources :reviews, only: [:index]
-    end
+    resources :restaurants, only: [:index, :show]
     resources :reservations, only: [:index, :create, :show, :update, :destroy]
-    resources :reviews, only: [:create]
+    resources :reviews, only: [:index, :create]
   end
 
   get '*path', to: "static_pages#frontend_index"

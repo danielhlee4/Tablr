@@ -2,29 +2,28 @@ class Api::ReviewsController < ApplicationController
   before_action :require_login, except: [:index]
   
   def index
-    @restaurant = Restaurant.find(params[:restaurant_id])
-    @reviews = @restaurant.reviews.includes(reservation: :user)
-    
+    @reviews = Review.includes(reservation: :user)
     render :index
   end
 
   def create
-    reservation = current_user.reservations.find_by(id: review_params[:reservation_id])
+    @review = Review.new(review_params)
+  
+    @review.user = current_user
+    @review.reservation = current_user.reservations.find_by(id: review_params[:reservation_id])
     
-    if reservation.nil?
+    if @review.reservation.nil?
       render json: { error: "Reservation not found or doesn't belong to the current user" }, status: :not_found
       return
     end
-
-    @review = reservation.build_review(review_params.except(:reservation_id))
-
+  
     if @review.save
       render :show
     else
-      render json: @review.errors.full_messages, status: :unprocessable_entity
+      render json: { errors: @review.errors.full_messages }, status: :unprocessable_entity
     end
   end
-
+  
   private
 
   def require_login
@@ -34,6 +33,6 @@ class Api::ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:overall_rating, :food_rating, :service_rating, :ambiance_rating, :value_rating, :body, :reservation_id)
+    params.require(:review).permit(:overall_rating, :food_rating, :service_rating, :ambiance_rating, :value_rating, :body, :reservation_id, :restaurant_id)
   end
 end

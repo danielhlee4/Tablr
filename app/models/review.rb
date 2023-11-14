@@ -14,7 +14,7 @@
 #  updated_at      :datetime         not null
 #
 class Review < ApplicationRecord
-    validates :overall_rating, :food_rating, :service_rating, :ambiance_rating, :value_rating, presence: true
+    validates :overall_rating, :food_rating, :service_rating, :ambiance_rating, :value_rating, :restaurant_id, presence: true
     validates :overall_rating, :food_rating, :service_rating, :ambiance_rating, :value_rating, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
     validates :body, presence: true, length: { minimum: 10, maximum: 1000 }
     validates :reservation_id, uniqueness: { message: "has already been reviewed" }
@@ -22,21 +22,16 @@ class Review < ApplicationRecord
 
     belongs_to :reservation
     has_one :user, through: :reservation
-    has_one :restaurant, through: :reservation
+    belongs_to :restaurant
 
     private
 
     def user_has_not_reviewed_restaurant_before
-        user = self.reservation.user
-        restaurant = self.reservation.restaurant
-
-        # Check for any existing review for the restaurant by this user.
-        existing_review = Review.joins(reservation: :restaurant)
-                            .where(reservations: { user_id: user.id })
-                            .where('reservations.restaurant_id = ?', restaurant.id)
-                            .where.not(id: self.id) # Exclude the current review if it's an update
-                            .exists?
-
+        existing_review = Review.joins(reservation: :user)
+                          .where(reservations: { user_id: self.reservation.user_id, restaurant_id: self.restaurant_id })
+                          .where.not(id: self.id) # Exclude the current review if it's an update
+                          .exists?
+    
         errors.add(:base, "You have already reviewed this restaurant.") if existing_review
     end
 end
