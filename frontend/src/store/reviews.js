@@ -14,29 +14,36 @@ export const receiveReview = review => ({
     type: RECEIVE_REVIEW,
     review,
 });
+
+// Selector
+export const getReviewsByRestaurantId = (state, restaurantId) => {
+    return Object.values(state.reviews || {}).filter(review => review.restaurantId === restaurantId);
+};
   
-// Selectors
-export const fetchReviews = restaurantId => async dispatch => {
-    const response = await fetch(`/api/restaurants/${restaurantId}/reviews`);
+// Thunk action creators
+export const fetchReviews = () => async dispatch => {
+    const response = await fetch(`/api/reviews`);
     if (response.ok) {
         const reviews = await response.json();
         dispatch(receiveReviews(reviews));
     }
 };
-  
+
 export const createReview = reviewData => async dispatch => {
     const response = await csrfFetch(`/api/reviews`, {
         method: 'POST',
-        body: JSON.stringify(reviewData),
+        body: JSON.stringify({ review: reviewData }),
         headers: { 'Content-Type': 'application/json' }
     });
   
     if (response.ok) {
         const review = await response.json();
         dispatch(receiveReview(review));
+    } else {
+        const error = await response.json();
+        throw new Error(error.errors || "An error occurred");
     }
 };
-  
 
 // Reducer
 const reviewsReducer = (state = {}, action) => {
