@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './StarRating.css';
 
-const StarRating = ({ category, onChangeRating }) => {
+const StarRating = ({ label, category, onChangeRating }) => {
   const [rating, setRating] = useState(0);
 
   const handleClick = (index) => {
@@ -11,7 +11,7 @@ const StarRating = ({ category, onChangeRating }) => {
 
   return (
     <div className="create-star-rating">
-      <div>{category}</div>
+      <div>{label}</div>
       {[...Array(5)].map((star, index) => {
         index += 1;
         return (

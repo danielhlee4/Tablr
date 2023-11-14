@@ -68,30 +68,33 @@ function ReviewCreate() {
         
         try {
             await dispatch(createReview(reviewData));
-            // Handle success, maybe clear the form or redirect the user
-        } catch (error) {
-            console.error("Failed to submit review:", error.message);
+            history.push(`/restaurants/${restaurantId}`);
+        } catch (errorResponse) {
+            const errorData = await errorResponse.json();
+            setError(errorData.errors.join(', '));
         }
     };
       
-
     return(
-        <form onSubmit={handleSubmit}>
-            <StarRating category="overallRating" onChangeRating={changeRating} />
-            <StarRating category="foodRating" onChangeRating={changeRating} />
-            <StarRating category="serviceRating" onChangeRating={changeRating} />
-            <StarRating category="ambianceRating" onChangeRating={changeRating} />
-            <StarRating category="valueRating" onChangeRating={changeRating} />
-            <textarea
-                className="review-textarea"
-                value={reviewBody}
-                onChange={(e) => setReviewBody(e.target.value)}
-                placeholder="Your review must be at least 10 characters"
-                minLength="10"
-                required
-            />
-            <button type="submit" className="submit-review-btn">Submit</button>
-        </form>
+        <>
+            <form onSubmit={handleSubmit}>
+                <StarRating label="Overall" category="overallRating" onChangeRating={changeRating} />
+                <StarRating label="Food" category="foodRating" onChangeRating={changeRating} />
+                <StarRating label="Service" category="serviceRating" onChangeRating={changeRating} />
+                <StarRating label="Ambiance" category="ambianceRating" onChangeRating={changeRating} />
+                <StarRating label="Value" category="valueRating" onChangeRating={changeRating} />
+                <textarea
+                    className="review-textarea"
+                    value={reviewBody}
+                    onChange={(e) => setReviewBody(e.target.value)}
+                    placeholder="Your review must be at least 10 characters"
+                    minLength="10"
+                    required
+                />
+                <button type="submit" className="submit-review-btn">Submit</button>
+            </form>
+            {error && <div className="review-error-message">{error}</div>}
+        </>
     )
 }
 

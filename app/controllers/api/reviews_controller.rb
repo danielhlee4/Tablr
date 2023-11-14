@@ -8,7 +8,6 @@ class Api::ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-  
     @review.user = current_user
     @review.reservation = current_user.reservations.find_by(id: review_params[:reservation_id])
     
