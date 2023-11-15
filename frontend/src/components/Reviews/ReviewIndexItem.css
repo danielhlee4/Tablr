@@ -1,0 +1,39 @@
+.review-index-item {
+    padding: 16px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.review-user {
+    font-weight: bold;
+margin-bottom: 8px;
+}
+
+.review-ratings {
+    display: flex;
+    align-items: center;
+}
+
+.star {
+    color: #c2c9d6;
+    margin-right: 5px;
+}
+
+.star.filled {
+    color: #da3743;
+}
+
+.review-date {
+    margin-left: 8px;
+}
+
+.review-details {
+    margin: 8px 0;
+}
+
+.review-body {
+    margin-top: 8px;
+}
+
+.review-divider {
+    margin-top: 16px;
+}

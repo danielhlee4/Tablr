@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getRestaurant, fetchRestaurant } from '../../store/restaurants';
 import theready from '../../assets/theready.webp';
 import ReservationBox from '../Reservations/ReservationBox';
+import ReviewIndex from '../Reviews/ReviewIndex';
 
 function RestaurantShow() {
     const { restaurantId } = useParams();
@@ -94,7 +95,7 @@ function RestaurantShow() {
                         <div id='show-reviews-title-container'>
                             <h2 id='show-reviews-title'>What 42 people are saying</h2>
                         </div>
-                        <h3>Reviews coming soon!</h3>
+                        <ReviewIndex restaurantId={restaurantId}/>
                     </div>
                 </div>
                 <div className='sidebar'>

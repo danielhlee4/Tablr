@@ -17,8 +17,17 @@ export const receiveReview = review => ({
 
 // Selector
 export const getReviewsByRestaurantId = (state, restaurantId) => {
-    return Object.values(state.reviews || {}).filter(review => review.restaurantId === restaurantId);
+    const reviewsArray = Object.values(state.reviews || {});
+    const restaurantIdNum = Number(restaurantId);
+
+    const filteredReviews = reviewsArray.filter(review => {
+        const reviewRestaurantIdNum = Number(review.restaurantId);
+        return reviewRestaurantIdNum === restaurantIdNum;
+    });
+
+    return filteredReviews;
 };
+
   
 // Thunk action creators
 export const fetchReviews = () => async dispatch => {
