@@ -11,6 +11,7 @@ function ReviewCreate() {
     const dispatch = useDispatch();
     const history = useHistory();
     const reservation = useSelector(state => getReservation(reservationId)(state));
+    const user = useSelector(state => state.session.user);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -49,6 +50,7 @@ function ReviewCreate() {
     }
 
     const restaurantId = reservation.restaurant.id;
+    const restaurantName = reservation.restaurant.name;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -73,23 +75,26 @@ function ReviewCreate() {
     };
       
     return (
-        <form onSubmit={handleSubmit}>
-            {error && <div className="review-error-message">{error}</div>}
-            <StarRating label="Overall" category="overallRating" onChangeRating={changeRating} />
-            <StarRating label="Food" category="foodRating" onChangeRating={changeRating} />
-            <StarRating label="Service" category="serviceRating" onChangeRating={changeRating} />
-            <StarRating label="Ambiance" category="ambianceRating" onChangeRating={changeRating} />
-            <StarRating label="Value" category="valueRating" onChangeRating={changeRating} />
-            <textarea
-                className="review-textarea"
-                value={reviewBody}
-                onChange={(e) => setReviewBody(e.target.value)}
-                placeholder="Your review must be at least 10 characters"
-                minLength="10"
-                required
-            />
-            <button type="submit" className="submit-review-btn">Submit</button>
-        </form>
+        <div className='review-form-container'>
+            <form onSubmit={handleSubmit}>
+                <h2 className='review-header'>{user.firstName}, how was your experience at {restaurantName}?</h2>
+                {error && <div className="review-error-message">{error}</div>}
+                <StarRating label="Overall" category="overallRating" onChangeRating={changeRating} />
+                <StarRating label="Food" category="foodRating" onChangeRating={changeRating} />
+                <StarRating label="Service" category="serviceRating" onChangeRating={changeRating} />
+                <StarRating label="Ambiance" category="ambianceRating" onChangeRating={changeRating} />
+                <StarRating label="Value" category="valueRating" onChangeRating={changeRating} />
+                <textarea
+                    className="review-textarea"
+                    value={reviewBody}
+                    onChange={(e) => setReviewBody(e.target.value)}
+                    placeholder="Your review must be at least 10 characters"
+                    minLength="10"
+                    required
+                />
+                <button type="submit" className="submit-review-btn">Submit</button>
+            </form>
+        </div>
     );
 }
 

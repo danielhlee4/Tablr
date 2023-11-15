@@ -1,6 +1,20 @@
 .create-star-rating {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 0.5em;
+}
+
+.create-star-rating div.label {
+    width: 20%;
+    text-align: right;
+    margin-right: 1em;
+}
+
+.create-star-rating .star-container {
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .create-star-rating button {
@@ -8,11 +22,12 @@
     border: none;
     padding: 0;
     text-decoration: none;
+    cursor: pointer;
+    margin: 0 3px;
 }
 
 .create-star-rating .create-star {
     color: #c2c9d6;
-    cursor: pointer;
     font-size: 1.5em;
 }
   
