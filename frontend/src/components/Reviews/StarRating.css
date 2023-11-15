@@ -6,13 +6,13 @@
 }
 
 .create-star-rating div.label {
-    width: 20%;
+    width: 40%;
     text-align: right;
     margin-right: 1em;
 }
 
 .create-star-rating .star-container {
-    width: 80%;
+    width: 60%;
     display: flex;
     justify-content: flex-start;
 }

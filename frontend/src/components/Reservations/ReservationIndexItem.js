@@ -21,6 +21,10 @@ function ReservationIndexItem({ reservation }) {
         history.push(`/users/${reservation.user.id}/reservations/${reservation.id}/edit`);
     };
 
+    const handleLeaveReview = () => {
+        history.push(`/users/${reservation.user.id}/reservations/${reservation.id}/review/new`);
+    };
+
     return (
         <div className="index-item-reservations-container">
             <Link to={`/restaurants/${reservation.restaurant.id}`}>
@@ -62,7 +66,7 @@ function ReservationIndexItem({ reservation }) {
 
                 <div>
                     {isPastReservation(reservation.date, reservation.time) ? 
-                        <button className="index-item-reservation-action">Leave a review</button> : 
+                        <button className="index-item-reservation-action" onClick={handleLeaveReview}>Leave a review</button> : 
                         <>
                             <button className="index-item-reservation-action" onClick={handleModify}>Modify</button>
                             <button className="index-item-reservation-action" onClick={handleCancel}>Cancel</button>
