@@ -16,7 +16,7 @@ class Reservation < ApplicationRecord
     validates :user_id, :restaurant_id, :date, :time, presence: true
     validates :party_size, inclusion: { in: 1..11, message: "must be between 1 and 11" }, presence: true
     validate :validate_time_slot
-    validate :date_cannot_be_in_the_past
+    # validate :date_cannot_be_in_the_past
     validate :no_overlapping_reservations
 
     belongs_to :user
@@ -35,9 +35,9 @@ class Reservation < ApplicationRecord
         end
     end
 
-    def date_cannot_be_in_the_past
+    def date_cannot_be_in_the_past 
         if date && date < Date.today
-            errors.add(:date, "can't be in the past")
+          errors.add(:date, "can't be in the past")
         end
     end
 

@@ -19,7 +19,7 @@ ApplicationRecord.transaction do
 end  
 
 puts "Creating users..."
-# Create one user with an easy to remember username, email, and password:
+
 User.create!(
   first_name: 'Demo',
   last_name: 'Lovato', 
@@ -30,8 +30,78 @@ User.create!(
 User.create!(
   first_name: 'Thomas',
   last_name: 'Hobbes', 
-  email: 'HomicidalPsycho@jungle.cat', 
-  password: 'G.R.O.S.S'
+  email: 'thomas@hobbes.com', 
+  password: 'password'
+)
+
+User.create!(
+  first_name: 'Alice',
+  last_name: 'Smith',
+  email: 'demo1@demo.com',
+  password: 'password'
+)
+
+User.create!(
+  first_name: 'Bob',
+  last_name: 'Johnson',
+  email: 'demo2@demo.com',
+  password: 'password'
+)
+
+User.create!(
+  first_name: 'Carol',
+  last_name: 'Williams',
+  email: 'demo3@demo.com',
+  password: 'password'
+)
+
+User.create!(
+  first_name: 'Dave',
+  last_name: 'Brown',
+  email: 'demo4@demo.com',
+  password: 'password'
+)
+
+User.create!(
+  first_name: 'Eve',
+  last_name: 'Jones',
+  email: 'demo5@demo.com',
+  password: 'password'
+)
+
+User.create!(
+  first_name: 'Frank',
+  last_name: 'Garcia',
+  email: 'demo6@demo.com',
+  password: 'password'
+)
+
+User.create!(
+  first_name: 'Grace',
+  last_name: 'Miller',
+  email: 'demo7@demo.com',
+  password: 'password'
+)
+
+User.create!(
+  first_name: 'Henry',
+  last_name: 'Davis',
+  email: 'demo8@demo.com',
+  password: 'password'
+)
+
+User.create!(
+  first_name: 'Isabel',
+  last_name: 'Rodriguez',
+  email: 'demo9@demo.com',
+  password: 'password'
+)
+
+User.create!(
+  first_name: 'John',
+  last_name: 'Martinez',
+  email: 'demo10@demo.com',
+  password: 'password'
 )
 
 puts "Creating restaurants..."
@@ -534,5 +604,20 @@ napkin_burger.photo.attach(
   io: URI.open('https://tablr-seeds.s3.amazonaws.com/5napkinburger.webp'),
   filename: "restaurant_5_napkin_burger.webp"
 )
+
+puts "Creating reservations..."
+
+reservation = Reservation.create!(
+  user_id: 1,
+  restaurant_id: 1,
+  party_size: 2,
+  date: '2022-10-26',
+  time: "2000-01-01T16:30:00.000-05:00",
+)
+# if reservation.save
+#   puts "Created reservation ##{reservation.id} for user ##{user_id} at La Pizza & La Pasta."
+# else
+#   puts "Failed to create reservation for user ##{user_id}: #{reservation.errors.full_messages.join(", ")}"
+# end
 
 puts "Done!"

@@ -27,7 +27,8 @@ function ProfileButton({ user }) {
 
   const logout = (e) => {
     e.preventDefault();
-    dispatch(sessionActions.logout()).then(() => history.push("/"));
+    history.push("/");
+    dispatch(sessionActions.logout());
   };
 
   return (
@@ -37,13 +38,13 @@ function ProfileButton({ user }) {
           <i className="fa-light fa-user"></i>
         </button>
       </div>
-      {showMenu && (
+      {showMenu && user && (
         <div className="profile-dropdown-container">
           <ul className="profile-dropdown">
-            <li id="greeting">Hello, {user.firstName}!</li>
+            <li id="greeting">Hello, {user?.firstName}!</li>
             <div id="divider"></div>
             <li>
-              <Link to={`/users/${user.id}/reservations`}>My Reservations</Link>
+              <Link to={`/users/${user?.id}/reservations`}>My Reservations</Link>
             </li>
             <li>
               <a href="https://www.linkedin.com">My LinkedIn</a>
