@@ -35,9 +35,10 @@ class Reservation < ApplicationRecord
         end
     end
 
-    def date_cannot_be_in_the_past 
-        if date && date < Date.today
-          errors.add(:date, "can't be in the past")
+    def date_cannot_be_in_the_past
+        reservation_time = DateTime.new(date.year, date.month, date.day, time.hour, time.min)
+        if reservation_time < DateTime.now
+          errors.add(:base, "Reservation date and time can't be in the past")
         end
     end
 

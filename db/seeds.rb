@@ -605,15 +605,141 @@ napkin_burger.photo.attach(
   filename: "restaurant_5_napkin_burger.webp"
 )
 
-puts "Creating reservations..."
+puts "Creating reservations and reviews..."
 
-reservation = Reservation.create!(
+Reservation.create!(
   user_id: 1,
   restaurant_id: 1,
   party_size: 2,
-  date: '2022-10-26',
+  date: '2022-01-26',
   time: "2000-01-01T16:30:00.000-05:00",
 )
+
+Review.create!(
+  reservation_id: 1,
+  restaurant_id: 1,
+  overall_rating: 5,
+  food_rating: 5,
+  service_rating: 4,
+  ambiance_rating: 4,
+  value_rating: 5,
+  body: "Absolutely loved the pizza and pasta at La Pizza & La Pasta! Authentic Italian taste with every bite. The service was good, and the ambiance made our dining experience very enjoyable. Definitely worth the price!"
+)
+
+Reservation.create!(
+  user_id: 2,
+  restaurant_id: 1,
+  party_size: 3,
+  date: '2022-02-22',
+  time: "2000-01-01T16:30:00.000-05:00",
+)
+
+Review.create!(
+  reservation_id: 2,
+  restaurant_id: 1,
+  overall_rating: 4,
+  food_rating: 4,
+  service_rating: 3,
+  ambiance_rating: 4,
+  value_rating: 4,
+  body: "A delightful experience overall. The pasta dishes were delicious, although the service could have been a bit more attentive. The atmosphere is cozy and inviting. Will come back!"
+)
+
+Reservation.create!(
+  user_id: 3,
+  restaurant_id: 1,
+  party_size: 5,
+  date: '2022-04-19',
+  time: "2000-01-01T16:30:00.000-05:00",
+)
+
+Review.create!(
+  reservation_id: 3,
+  restaurant_id: 1,
+  overall_rating: 3,
+  food_rating: 3,
+  service_rating: 2,
+  ambiance_rating: 4,
+  value_rating: 3,
+  body: "The food was decent but nothing extraordinary. Service was slow, and we felt a bit ignored. The ambiance is the saving grace of this place. Might give it another try in the future."
+)
+
+Reservation.create!(
+  user_id: 4,
+  restaurant_id: 1,
+  party_size: 4,
+  date: '2022-07-11',
+  time: "2000-01-01T16:30:00.000-05:00",
+)
+
+Review.create!(
+  reservation_id: 4,
+  restaurant_id: 1,
+  overall_rating: 5,
+  food_rating: 5,
+  service_rating: 5,
+  ambiance_rating: 5,
+  value_rating: 5,
+  body: "An outstanding dining experience! From the appetizers to the main course, everything was perfect. The staff were very welcoming and the atmosphere was delightful. Highly recommend!"
+)
+
+Reservation.create!(
+  user_id: 5,
+  restaurant_id: 1,
+  party_size: 4,
+  date: '2022-09-01',
+  time: "2000-01-01T16:30:00.000-05:00",
+)
+
+Review.create!(
+  reservation_id: 5,
+  restaurant_id: 1,
+  overall_rating: 4,
+  food_rating: 5,
+  service_rating: 4,
+  ambiance_rating: 3,
+  value_rating: 4,
+  body: "The pizza here is probably the best I've had outside of Italy. Service was good, though the place was a bit crowded and noisy. Good value for money."
+)
+
+Reservation.create!(
+  user_id: 6,
+  restaurant_id: 1,
+  party_size: 6,
+  date: '2023-07-18',
+  time: "2000-01-01T16:30:00.000-05:00",
+)
+
+Review.create!(
+  reservation_id: 6,
+  restaurant_id: 1,
+  overall_rating: 2,
+  food_rating: 2,
+  service_rating: 2,
+  ambiance_rating: 3,
+  value_rating: 2,
+  body: "Was really looking forward to dining here, but it turned out to be a disappointment. The food was mediocre, and the service was lackluster. Not sure if I'd want to visit again."
+)
+
+Reservation.create!(
+  user_id: 7,
+  restaurant_id: 1,
+  party_size: 8,
+  date: '2023-10-11',
+  time: "2000-01-01T16:30:00.000-05:00",
+)
+
+Review.create!(
+  reservation_id: 7,
+  restaurant_id: 1,
+  overall_rating: 5,
+  food_rating: 5,
+  service_rating: 5,
+  ambiance_rating: 5,
+  value_rating: 4,
+  body: "A wonderful evening at La Pizza & La Pasta. The food is as authentic as it gets, and the service was exceptional. A bit pricey, but for the quality and experience, it’s worth it."
+)
+
 # if reservation.save
 #   puts "Created reservation ##{reservation.id} for user ##{user_id} at La Pizza & La Pasta."
 # else
