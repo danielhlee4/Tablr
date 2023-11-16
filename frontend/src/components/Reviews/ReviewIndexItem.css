@@ -5,17 +5,18 @@
 
 .review-user {
     font-weight: bold;
-margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
 .review-ratings {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .star {
     color: #c2c9d6;
-    margin-right: 5px;
+    margin-right: 3px;
 }
 
 .star.filled {
@@ -23,15 +24,38 @@ margin-bottom: 8px;
 }
 
 .review-date {
+    font-size: 15px;
     margin-left: 8px;
 }
 
 .review-details {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     margin: 8px 0;
+    font-size: 15px;
+}
+
+.detail-label {
+    margin-right: 6px;
+    font-weight: 600;
+}
+
+.review-details .detail-label:not(:first-child) {
+    margin-left: 6px;
+}
+
+.detail-rating {
+    color: #da3743;
+    margin-right: 6px;
+    font-weight: 600;
 }
 
 .review-body {
     margin-top: 8px;
+    font-size: 15px;
+    font-weight: 300;
+    overflow-wrap: break-word;
 }
 
 .review-divider {

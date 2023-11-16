@@ -20,14 +20,14 @@ const ReviewIndexItem = ({ review }) => {
       </div>
       <div className="review-ratings">
         {renderStars(review.overallRating)}
-        <span className="review-date"> - Dined on {formatDate(review.reservation.date)}</span>
+        <span className="review-date">Dined on {formatDate(review.reservation.date)}</span>
       </div>
       <div className="review-details">
-        <div>Overall {review.overallRating}</div>
-        <div>Food {review.foodRating}</div>
-        <div>Service {review.serviceRating}</div>
-        <div>Ambiance {review.ambianceRating}</div>
-        <div>Value {review.valueRating}</div>
+        <span className="detail-label">Overall</span><span className="detail-rating">{review.overallRating}</span> •
+        <span className="detail-label">Food</span><span className="detail-rating">{review.foodRating}</span> •
+        <span className="detail-label">Service</span><span className="detail-rating">{review.serviceRating}</span> •
+        <span className="detail-label">Ambiance</span><span className="detail-rating">{review.ambianceRating}</span> •
+        <span className="detail-label">Value</span><span className="detail-rating">{review.valueRating}</span>
       </div>
       <div className="review-body">
         {review.body}
