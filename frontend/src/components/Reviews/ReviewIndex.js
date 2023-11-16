@@ -7,11 +7,14 @@ import './ReviewIndex.css';
 const ReviewIndex = ({ restaurantId }) => {
   const dispatch = useDispatch();
   const reviews = useSelector(state => getReviewsByRestaurantId(state, restaurantId));
-  console.log('reviews:', reviews)
 
   useEffect(() => {
     dispatch(fetchReviews());
   }, [dispatch]);
+
+  const sortedReviews = reviews.slice().sort((a, b) => {
+    return new Date(b.reservation.date) - new Date(a.reservation.date);
+  });
 
   if (!reviews) {
     return <div>Loading reviews...</div>;
@@ -23,7 +26,7 @@ const ReviewIndex = ({ restaurantId }) => {
 
   return (
     <div className="review-index">
-      {reviews.map((review) => (
+      {sortedReviews.map((review) => (
         <ReviewIndexItem key={review.id} review={review} />
       ))}
     </div>
