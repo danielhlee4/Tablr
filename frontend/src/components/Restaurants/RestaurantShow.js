@@ -3,6 +3,7 @@ import { Link, animateScroll as scroll } from 'react-scroll';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRestaurant, fetchRestaurant } from '../../store/restaurants';
+import { fetchReviews, getReviewsByRestaurantId } from '../../store/reviews';
 import theready from '../../assets/theready.webp';
 import ReservationBox from '../Reservations/ReservationBox';
 import ReviewIndex from '../Reviews/ReviewIndex';
@@ -11,6 +12,8 @@ function RestaurantShow() {
     const { restaurantId } = useParams();
     const restaurant = useSelector(getRestaurant(restaurantId));
     const dispatch = useDispatch();
+    const reviews = useSelector(state => getReviewsByRestaurantId(state, restaurantId));
+    const [numOfReviews, setNumOfReviews] = useState(0);
 
     const [activeItem, setActiveItem] = useState('overview');
     const overviewRef = useRef(null);
@@ -22,6 +25,9 @@ function RestaurantShow() {
     
     useEffect(() => {
         dispatch(fetchRestaurant(restaurantId));
+        dispatch(fetchReviews()).then(() => {
+            setNumOfReviews(reviews.length);
+        });
 
         const handleScroll = () => {
             const navbarHeight = 50;
@@ -43,7 +49,7 @@ function RestaurantShow() {
         window.addEventListener('scroll', handleScroll, { passive: true });
         
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [restaurantId, dispatch]);
+    }, [restaurantId, dispatch, reviews.length]);
 
     if (!restaurant) {
         return <div>Loading...</div>;
@@ -93,7 +99,7 @@ function RestaurantShow() {
                     </div>
                     <div ref={reviewsRef} className='show-reviews'>
                         <div id='show-reviews-title-container'>
-                            <h2 id='show-reviews-title'>What 42 people are saying</h2>
+                            <h2 id='show-reviews-title'>What {numOfReviews} people are saying</h2>
                         </div>
                         <ReviewIndex restaurantId={restaurantId}/>
                     </div>

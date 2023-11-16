@@ -134,7 +134,6 @@
 
 .show-overview {
     width: 608px;
-    height: 1400px;
     border-radius: 8px;
     background-color: #fff;
     padding: 0 16px;
@@ -142,17 +141,12 @@
 
 .sidebar {
     width: 320px;
-    height: 1100px;
     border-radius: 8px;
 }
 
 .show-overview,
 .sidebar {
     margin-top: -51px;
-}
-
-.show-overview-info {
-    height: 500px;
 }
 
 .navbar {
@@ -203,10 +197,6 @@
 
 .show-description {
     margin: 20px 0;
-}
-
-.show-reviews {
-    height: 500px;
 }
 
 #show-reviews-title {

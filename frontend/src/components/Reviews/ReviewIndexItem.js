@@ -32,7 +32,6 @@ const ReviewIndexItem = ({ review }) => {
       <div className="review-body">
         {review.body}
       </div>
-      <hr className="review-divider" />
     </div>
   );
 };
