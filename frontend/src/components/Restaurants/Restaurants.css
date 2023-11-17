@@ -53,6 +53,16 @@
     font-size: 18px;
     font-weight: 600;
 }
+
+.inline-ratings-reviews {
+    display: flex;
+    align-items: center;
+}
+
+.inline-ratings-reviews-text {
+    font-size: 15px;
+    margin-left: 4px;
+}
   
 .inline-description {
     display: flex;

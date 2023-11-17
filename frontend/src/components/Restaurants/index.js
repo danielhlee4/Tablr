@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SearchBanner from '../Search';
 import RestaurantIndexItem from './RestaurantIndexItem';
 import { getRestaurants, fetchRestaurants } from '../../store/restaurants';
+import { fetchReviews } from '../../store/reviews';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,6 +15,7 @@ function RestaurantIndex() {
     
     useEffect(() => {
         dispatch(fetchRestaurants());
+        dispatch(fetchReviews());
     }, [dispatch]);
 
     const carouselSettings = {

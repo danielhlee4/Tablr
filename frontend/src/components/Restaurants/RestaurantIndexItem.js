@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { getReviewsByRestaurantId } from '../../store/reviews';
 import { Link, useHistory } from 'react-router-dom';
 import badroman from '../../assets/badroman.webp'
 import { convertTo12HourFormat } from '../../util/timeUtils';
+import StarAverage from '../Reviews/StarAverage';
 
 function RestaurantIndexItem({ restaurant }) {
     const [isRaised, setIsRaised] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
     const [nextThreeTimes, setNextThreeTimes] = useState([]);
+    const reviews = useSelector(state => getReviewsByRestaurantId(state, restaurant.id));
     const history = useHistory();
 
     const calculateRoundedUpTime = () => {
@@ -113,16 +117,16 @@ function RestaurantIndexItem({ restaurant }) {
         >
             <div className="image-container">
                 <img 
-                    // src={restaurant.photoUrl}
-                    src={badroman}
+                    src={restaurant.photoUrl}
+                    // src={badroman}
                     alt={`image of ${restaurant.name}`} 
                 />
             </div>
             <div className="text-container">
                 <h2 id="restaurant-name">{restaurant.name}</h2>
-                <div>Rating / Reviews placeholder</div>
                 <div className="inline-ratings-reviews">
-
+                    <StarAverage reviews={reviews} />
+                    <span className="inline-ratings-reviews-text">{reviews.length} reviews</span>
                 </div>
                 <div className="inline-description">
                     <span>{restaurant.cuisine}</span>

@@ -56,7 +56,7 @@ function RestaurantShow() {
     useEffect(() => {
         if (reviews.length) {
             const total = reviews.reduce((acc, review) => acc + review.overallRating, 0);
-            setAverageRating(total / reviews.length);
+            setAverageRating((total / reviews.length).toFixed(1));
         }
     }, [reviews]);
 
@@ -68,8 +68,8 @@ function RestaurantShow() {
         <>
             <img 
                 className='show-restaurant-image' 
-                // src={restaurant.photoUrl}
-                src={theready} 
+                src={restaurant.photoUrl}
+                // src={theready} 
                 alt={`image of ${restaurant.name}`}
             />
             <div className='show-main-content'>
