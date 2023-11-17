@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReviewIndexItem from './ReviewIndexItem';
+import ReviewStats from './ReviewStats';
 import { fetchReviews, getReviewsByRestaurantId } from '../../store/reviews';
 import './ReviewIndex.css';
 
@@ -26,6 +27,7 @@ const ReviewIndex = ({ restaurantId }) => {
 
   return (
     <div className="review-index">
+      <ReviewStats reviews={sortedReviews} />
       {sortedReviews.map((review) => (
         <ReviewIndexItem key={review.id} review={review} />
       ))}

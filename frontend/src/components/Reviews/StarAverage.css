@@ -1,0 +1,30 @@
+.full-star,
+.partial-star .filled-part,
+.empty-star {
+    color: #da3743;
+    font-size: 16px;
+    margin-right: 3px;
+}
+
+.empty-star,
+.partial-star .empty-part {
+    color: #c2c9d6;
+}
+
+.partial-star {
+    display: inline-block;
+    position: relative;
+}
+
+.filled-part {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+.empty-part {
+    display: inline-block;
+    color: #c2c9d6;
+    white-space: nowrap;
+}
