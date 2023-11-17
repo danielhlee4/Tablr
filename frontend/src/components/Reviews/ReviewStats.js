@@ -13,11 +13,28 @@ const ReviewStats = ({ reviews }) => {
   const ambianceAverage = calculateAverage('ambianceRating');
   const valueAverage = calculateAverage('valueRating');
   const overallAverage = calculateAverage('overallRating');
+
+  const countRatings = (reviews) => {
+    const counts = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+    reviews.forEach(review => {
+      counts[review.overallRating]++;
+    });
+    return counts;
+  };
+
+  const ratingsCount = countRatings(reviews);
+  const totalReviews = reviews.length;
+
+  function calculateBarWidth(count, totalReviews) {
+    const minWidth = 5; 
+    const widthPercentage = Math.max((count / totalReviews) * 100, minWidth);
+    return widthPercentage;
+  }
   
   return (
     <>
         <h3 className='overall-ratings-reviews'>Overall ratings and reviews</h3>
-        <div className='review-stats'>
+        <div className='review-stats-container'>
             <div className="review-stats-left">
                 <p>Reviews can only be made by diners who have eaten at this restaurant</p>
                 <div className='review-stats-overall'>
@@ -46,8 +63,21 @@ const ReviewStats = ({ reviews }) => {
                 </div>
                 </div>
             </div>
-            <div className='review-stats-right'>
-
+            <div className="review-stats-right">
+                {[5, 4, 3, 2, 1].map(star => {
+                    const count = ratingsCount[star];
+                    return (
+                        <div key={star} className="rating-distribution">
+                            <span className="star-label">{star}</span>
+                            <div className="bar-background">
+                            <div
+                                className="rating-bar"
+                                style={{ width: `${calculateBarWidth(count, totalReviews)}%` }}
+                            ></div>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     </>

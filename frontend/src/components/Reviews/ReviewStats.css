@@ -1,17 +1,20 @@
-.review-stats {
+.review-stats-container {
     padding-bottom: 15px;
     border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
 }
 
 .overall-ratings-reviews {
     font-weight: 700;
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
 .review-stats-left {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 55%;
 }
 
 .review-stats-left p {
@@ -63,3 +66,40 @@
     margin: 0 20px; 
 }
   
+.rating-distribution {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    width: 100%;
+}
+  
+.review-stats-right {
+  width: 45%;
+}
+
+.rating-distribution {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.bar-background {
+    background-color: #e0e0e0;
+    flex-grow: 1;
+    height: 20px;
+    position: relative;
+}
+  
+.rating-bar {
+    height: 100%;
+    background-color: #da3743;
+    position: absolute;
+    left: 0;
+}
+
+.star-label {
+    width: 20px;
+    text-align: right;
+    margin-right: 10px;
+}
