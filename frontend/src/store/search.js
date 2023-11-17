@@ -15,7 +15,7 @@ export const clearSearchResults = () => ({
 
 // thunk action creator
 export const fetchSearchResults = (query) => async dispatch => {
-    const res = await csrfFetch(`api/restaurants/search?query=${query}`);
+    const res = await csrfFetch(`/api/restaurants/search?query=${query}`);
     const data = await res.json();
 
     dispatch (receiveSearchResults(data));
