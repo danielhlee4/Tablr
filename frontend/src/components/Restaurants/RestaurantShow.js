@@ -7,6 +7,7 @@ import { fetchReviews, getReviewsByRestaurantId } from '../../store/reviews';
 import theready from '../../assets/theready.webp';
 import ReservationBox from '../Reservations/ReservationBox';
 import ReviewIndex from '../Reviews/ReviewIndex';
+import StarAverage from '../Reviews/StarAverage';
 
 function RestaurantShow() {
     const { restaurantId } = useParams();
@@ -14,6 +15,7 @@ function RestaurantShow() {
     const dispatch = useDispatch();
     const reviews = useSelector(state => getReviewsByRestaurantId(state, restaurantId));
     const [numOfReviews, setNumOfReviews] = useState(0);
+    const [averageRating, setAverageRating] = useState(0);
 
     const [activeItem, setActiveItem] = useState('overview');
     const overviewRef = useRef(null);
@@ -51,6 +53,13 @@ function RestaurantShow() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [restaurantId, dispatch, reviews.length]);
 
+    useEffect(() => {
+        if (reviews.length) {
+            const total = reviews.reduce((acc, review) => acc + review.overallRating, 0);
+            setAverageRating(total / reviews.length);
+        }
+    }, [reviews]);
+
     if (!restaurant) {
         return <div>Loading...</div>;
     }
@@ -86,13 +95,17 @@ function RestaurantShow() {
                             <h1 id='show-restaurant-name'>{restaurant.name}</h1>
                         </div>
                         <div className='show-overview-info'>
-                            {/* <span>Rating</span>
-                            <span>Num Reviews</span> */}
-                            <div id='show-overview-bar'>
+                            <div className='show-overview-bar'>
+                                <div className='show-overview-bar-rating'>
+                                    <StarAverage reviews={reviews} />
+                                    <span className='show-overview-bar-rating-text'>{averageRating}</span>
+                                </div>
+                                <i className="fa-sharp fa-light fa-message"></i>
+                                <span className='show-overview-bar-attribute'>{numOfReviews} Reviews</span>
                                 <i className="fa-sharp fa-light fa-money-bill"></i>
-                                <span>{restaurant.priceRange}</span>
+                                <span className='show-overview-bar-attribute'>{restaurant.priceRange}</span>
                                 <i className="fa-sharp fa-light fa-plate-utensils"></i>
-                                <span>{restaurant.cuisine}</span>
+                                <span className='show-overview-bar-attribute'>{restaurant.cuisine}</span>
                             </div>
                             <p className='show-description'>{restaurant.description}</p>
                         </div>
