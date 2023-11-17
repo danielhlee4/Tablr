@@ -29,8 +29,8 @@ function ReservationIndexItem({ reservation }) {
         <div className="index-item-reservations-container">
             <Link to={`/restaurants/${reservation.restaurant.id}`}>
                 <img
-                    // src={reservation.restaurant.photoUrl} 
-                    src={badroman}
+                    src={reservation.restaurant.photoUrl} 
+                    // src={badroman}
                     alt={`Image of ${reservation.restaurant.name}`} 
                     className="index-item-reservation-image"
                 />

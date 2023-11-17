@@ -18,8 +18,8 @@ function ReservationEdit() {
             <div className="edit-current-reservation-container">
                 <h2 className="edit-current-reservation-title">Your current reservation</h2>
                 <img 
-                    // src={reservation.restaurant.photoUrl} 
-                    src={badroman}
+                    src={reservation.restaurant.photoUrl} 
+                    // src={badroman}
                     alt={`Image of ${reservation.restaurant.name}`} 
                 />
                 <h3 className="edit-current-reservation-name">{reservation.restaurant.name}</h3>
