@@ -2882,7 +2882,7 @@ Review.create!(
 )
 
 Reservation.create!(
-  user_id: 1,
+  user_id: 12,
   restaurant_id: bhatti_indian_grill.id,
   party_size: 5,
   date: '2023-07-30',
@@ -3191,11 +3191,78 @@ Review.create!(
   body: "Enjoyed a great meal at 5 Napkin Burger. The burgers are well-cooked and the portions are generous. A solid choice for a casual dinner."
 )
 
+# Demo user reservation seeds
 
-# if reservation.save
-#   puts "Created reservation ##{reservation.id} for user ##{user_id} at La Pizza & La Pasta."
-# else
-#   puts "Failed to create reservation for user ##{user_id}: #{reservation.errors.full_messages.join(", ")}"
-# end
+Reservation.create!(
+  user_id: 1,
+  restaurant_id: 10,
+  party_size: 3,
+  date: '2023-10-05',
+  time: "2000-01-01T18:30:00.000-05:00"
+)
+
+Reservation.create!(
+  user_id: 1,
+  restaurant_id: 11,
+  party_size: 2,
+  date: '2023-10-12',
+  time: "2000-01-01T19:00:00.000-05:00"
+)
+
+Reservation.create!(
+  user_id: 1,
+  restaurant_id: 12,
+  party_size: 4,
+  date: '2023-10-18',
+  time: "2000-01-01T20:00:00.000-05:00"
+)
+
+Reservation.create!(
+  user_id: 1,
+  restaurant_id: 13,
+  party_size: 2,
+  date: '2023-10-23',
+  time: "2000-01-01T18:00:00.000-05:00"
+)
+
+Reservation.create!(
+  user_id: 1,
+  restaurant_id: 14,
+  party_size: 3,
+  date: '2023-10-27',
+  time: "2000-01-01T19:30:00.000-05:00"
+)
+
+Reservation.create!(
+  user_id: 1,
+  restaurant_id: 15,
+  party_size: 2,
+  date: '2023-10-30',
+  time: "2000-01-01T18:30:00.000-05:00"
+)
+
+Reservation.create!(
+  user_id: 1,
+  restaurant_id: 23,
+  party_size: 2,
+  date: '2023-12-05',
+  time: "2000-01-01T19:00:00.000-05:00"
+)
+
+Reservation.create!(
+  user_id: 1,
+  restaurant_id: 24,
+  party_size: 4,
+  date: '2023-12-15',
+  time: "2000-01-01T20:30:00.000-05:00"
+)
+
+Reservation.create!(
+  user_id: 1,
+  restaurant_id: 25,
+  party_size: 3,
+  date: '2023-12-22',
+  time: "2000-01-01T18:30:00.000-05:00"
+)
 
 puts "Done!"
