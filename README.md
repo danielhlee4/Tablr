@@ -1,24 +1,12 @@
-# README
+# Tablr README
+## Overview
+Tablr is a pixel perfect clone of OpenTable. The core functionality of this platform allows users to browse restaurants and find/create party reservations. A user is able to leave a restaurant review on their completed reservations for others to view.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## [Tablr Live Link](https://tablr-web-service.onrender.com/)
 
-Things you may want to cover:
+## Technologies Used
+Tablr implements [slick](https://kenwheeler.github.io/slick/) carousel to browse restaurants on the home page.
+![slickcarousel]
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Delve deep into ~2 features that show off your technical abilities. Discuss both the challenges faced and your brilliant solutions.
+Code snippets to highlight your best code (markdown code snippets, NOT screenshots)

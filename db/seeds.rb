@@ -35,71 +35,71 @@ User.create!(
 )
 
 User.create!(
-  first_name: 'Alice',
-  last_name: 'Smith',
+  first_name: 'Julia',
+  last_name: 'Child',
   email: 'demo1@demo.com',
   password: 'password'
 )
 
 User.create!(
-  first_name: 'Bob',
-  last_name: 'Johnson',
+  first_name: 'Kenji',
+  last_name: 'Lopez-Alt',
   email: 'demo2@demo.com',
   password: 'password'
 )
 
 User.create!(
-  first_name: 'Carol',
-  last_name: 'Williams',
+  first_name: 'Rachael',
+  last_name: 'Ray',
   email: 'demo3@demo.com',
   password: 'password'
 )
 
 User.create!(
-  first_name: 'Dave',
-  last_name: 'Brown',
+  first_name: 'Bobby',
+  last_name: 'Flay',
   email: 'demo4@demo.com',
   password: 'password'
 )
 
 User.create!(
-  first_name: 'Eve',
-  last_name: 'Jones',
+  first_name: 'Giada',
+  last_name: 'De Laurentiis',
   email: 'demo5@demo.com',
   password: 'password'
 )
 
 User.create!(
-  first_name: 'Frank',
-  last_name: 'Garcia',
+  first_name: 'Alton',
+  last_name: 'Brown',
   email: 'demo6@demo.com',
   password: 'password'
 )
 
 User.create!(
-  first_name: 'Grace',
-  last_name: 'Miller',
+  first_name: 'Ina',
+  last_name: 'Garten',
   email: 'demo7@demo.com',
   password: 'password'
 )
 
 User.create!(
-  first_name: 'Henry',
-  last_name: 'Davis',
+  first_name: 'Guy',
+  last_name: 'Fieri',
   email: 'demo8@demo.com',
   password: 'password'
 )
 
 User.create!(
-  first_name: 'Isabel',
-  last_name: 'Rodriguez',
+  first_name: 'Paula',
+  last_name: 'Deen',
   email: 'demo9@demo.com',
   password: 'password'
 )
 
 User.create!(
-  first_name: 'John',
-  last_name: 'Martinez',
+  first_name: 'Gordon',
+  last_name: 'Ramsay',
   email: 'demo10@demo.com',
   password: 'password'
 )
