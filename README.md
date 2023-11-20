@@ -26,8 +26,7 @@ Tablr is a pixel perfect clone of [OpenTable](https://www.opentable.com/). The c
 ### Restaurants
 Simplistic design of restaurant information is a key feature of Tablr. The following describes how restaurant expense information was implemented on the home page:
 
-![restaurant-expense](https://github.com/danielhlee4/Tablr/blob/main/frontend/src/assets/readme-expense.png)
-<img src="https://github.com/danielhlee4/Tablr/blob/main/frontend/src/assets/readme-expense.png" width="50%">
+<img src="https://github.com/danielhlee4/Tablr/blob/main/frontend/src/assets/readme-expense.png" width="20%">
 
 Each restaurant index item displays '$$$$' with the corresponding amount of dollar signs filled in or greyed out.
 
