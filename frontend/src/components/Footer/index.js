@@ -8,13 +8,13 @@ function Footer() {
             <ul>
                 <li id="title">Come visit me on:</li>
                 <li>
-                    <a href="https://www.linkedin.com">LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/danlee-/">LinkedIn</a>
                 </li>
                 <li>
-                    <a href="https://www.github.com">GitHub</a>
+                    <a href="https://github.com/danielhlee4">GitHub</a>
                 </li>
                 <li>
-                    <a href="https://www.wellfound.com">Wellfound</a>
+                    <a href="https://wellfound.com/u/daniel-lee-300">Wellfound</a>
                 </li>
                 <li>&copy; 2023 Tablr</li>
             </ul>

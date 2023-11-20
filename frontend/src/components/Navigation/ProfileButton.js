@@ -47,13 +47,13 @@ function ProfileButton({ user }) {
               <Link to={`/users/${user?.id}/reservations`}>My Reservations</Link>
             </li>
             <li>
-              <a href="https://www.linkedin.com">My LinkedIn</a>
+              <a href="https://www.linkedin.com/in/danlee-/">My LinkedIn</a>
             </li>
             <li>
-              <a href="https://www.github.com">My GitHub</a>
+              <a href="https://github.com/danielhlee4">My GitHub</a>
             </li>
             <li>
-              <a href="https://www.wellfound.com">My Wellfound</a>
+              <a href="https://wellfound.com/u/daniel-lee-300">My Wellfound</a>
             </li>
             <li>
               <button onClick={logout}>Log Out</button>

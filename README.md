@@ -1,8 +1,9 @@
 # Tablr README
-## Overview
-Tablr is a pixel perfect clone of OpenTable. The core functionality of Tablr allows users to browse restaurants and find/create party reservations. A user is able to leave a restaurant review on their completed reservations for others to view.
+#### [Try out Tablr!](https://tablr-web-service.onrender.com/)
 
-## [Tablr Live Link](https://tablr-web-service.onrender.com/)
+## Overview
+Tablr is a pixel perfect clone of [OpenTable](https://www.opentable.com/). The core functionality of Tablr allows users to browse restaurants and find/create party reservations. A user is able to leave a restaurant review on their completed reservations for others to view.
+
 
 ## Technologies Used
 
@@ -17,7 +18,7 @@ Tablr is a pixel perfect clone of OpenTable. The core functionality of Tablr all
 **PostgreSQL:** PostgreSQL is the robust database system used to store all application data, offering reliable transactions and a powerful query system to the Rails backend.
 
 
-**[Slick Carousel](https://kenwheeler.github.io/slick/):** Slick Carousel is a JavaScript libary for creating responsive carousels that can display one or more items at a time.
+**[Slick Carousel](https://kenwheeler.github.io/slick/):** A JavaScript libary for creating responsive carousels/sliders that can display one or more items at a time.
 
 ![slickcarousel](https://github.com/danielhlee4/Tablr/blob/main/frontend/src/assets/readme-carousel.gif)
 
@@ -26,6 +27,7 @@ Tablr is a pixel perfect clone of OpenTable. The core functionality of Tablr all
 Simplistic design of restaurant information is a key feature of Tablr. The following describes how restaurant expense information was implemented on the home page:
 
 ![restaurant-expense](https://github.com/danielhlee4/Tablr/blob/main/frontend/src/assets/readme-expense.png)
+<img src="https://github.com/danielhlee4/Tablr/blob/main/frontend/src/assets/readme-expense.png" width="50%">
 
 Each restaurant index item displays '$$$$' with the corresponding amount of dollar signs filled in or greyed out.
 
@@ -37,3 +39,7 @@ The above code snippet shows how each dollar sign is rendered dynamically depend
 Tablr reservations can be made between 11am and 10pm EST. To ensure the integrity of the reservation data, the following snippet demonstrates a time validation. It is designed to only allow a user to make a reservation in the time window on the hour or half hour (e.g 7pm, 7:30pm, 8pm)
 
 ![time-validation](https://github.com/danielhlee4/Tablr/blob/main/frontend/src/assets/readme-time-validation.png)
+
+## Features coming soon
+### Google Maps implementation
+### Save restaurant favorites
