@@ -2,7 +2,7 @@
 #### [Try out Tablr!](https://tablr-web-service.onrender.com/)
 
 ## Overview
-Tablr is a pixel perfect clone of [OpenTable](https://www.opentable.com/). The core functionality of Tablr allows users to browse restaurants and find/create party reservations. A user is able to leave a restaurant review on their completed reservations for others to view.
+Tablr is a pixel perfect clone of [OpenTable](https://www.opentable.com/). The core functionality of Tablr allows users to browse restaurants and find/create party reservations. Additionally, a user is able to leave restaurant reviews on their completed reservations for others to see.
 
 
 ## Technologies Used
@@ -35,7 +35,7 @@ Each restaurant index item displays '$$$$' with the corresponding amount of doll
 The above code snippet shows how each dollar sign is rendered dynamically depending on the expense value saved in the restaurant's database. An `active` class name darkens the character, and `inactive` greys the character out.
 
 ### Reservations
-Tablr reservations can be made between 11am and 10pm EST. To ensure the integrity of the reservation data, the following snippet demonstrates a back end time validation. It is designed to allow a user to make a reservation only in the time window on the hour or half hour (e.g 7pm, 7:30pm, 8pm)
+Tablr reservations can be made between 11am and 10pm EST. To ensure the integrity of the reservation data, the following snippet demonstrates a back end time validation. It is designed to allow a user to make a reservation only in the specified time window on the hour or half hour (e.g 7pm, 7:30pm, 8pm).
 
 ![time-validation](https://github.com/danielhlee4/Tablr/blob/main/frontend/src/assets/readme-time-validation.png)
 
