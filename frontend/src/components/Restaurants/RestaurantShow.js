@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRestaurant, fetchRestaurant } from '../../store/restaurants';
 import { fetchReviews, getReviewsByRestaurantId } from '../../store/reviews';
-import theready from '../../assets/theready.webp';
+// import theready from '../../assets/theready.webp';
 import ReservationBox from '../Reservations/ReservationBox';
 import ReviewIndex from '../Reviews/ReviewIndex';
 import StarAverage from '../Reviews/StarAverage';

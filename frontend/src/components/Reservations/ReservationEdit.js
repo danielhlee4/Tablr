@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getReservation } from "../../store/reservations";
 import { formatDateAndTime } from "../../util/timeUtils";
-import badroman from "../../assets/badroman.webp";
+// import badroman from "../../assets/badroman.webp";
 import ReservationBox from "./ReservationBox";
 
 function ReservationEdit() {

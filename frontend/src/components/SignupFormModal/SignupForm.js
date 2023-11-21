@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import logo from '../../assets/logo.png'
 import './SignupForm.css';
 
 function SignupForm() {
@@ -40,6 +41,7 @@ function SignupForm() {
   return (
     <form id="signup-form" onSubmit={handleSubmit}>
       <div id="signup-credentials-container">
+        <img src={logo} alt="Logo" />
         <ul id="errors">
           {errors.map((error) => (
             <li key={error}>{error}</li>

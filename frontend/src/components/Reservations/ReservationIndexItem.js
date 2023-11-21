@@ -1,6 +1,6 @@
 import { Link, useHistory } from 'react-router-dom';
 import { adjustForDST } from '../../util/timeUtils';
-import badroman from '../../assets/badroman.webp'
+// import badroman from '../../assets/badroman.webp'
 import { useDispatch } from 'react-redux';
 import { deleteReservation } from '../../store/reservations';
 import { formatDateAndTime, isPastReservation } from '../../util/timeUtils';

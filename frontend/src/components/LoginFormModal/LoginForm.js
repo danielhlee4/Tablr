@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
+import logo from '../../assets/logo.png'
 import './LoginForm.css';
 
 function LoginForm() {
@@ -35,6 +36,7 @@ function LoginForm() {
   return (
     <form id="login-form" onSubmit={handleSubmit}>
       <div id="login-credentials-container">
+        <img src={logo} alt="Logo" />
         <ul id="errors">
           {errors.map(error => <li key={error}>{error}</li>)}
         </ul>

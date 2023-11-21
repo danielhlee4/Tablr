@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getReviewsByRestaurantId } from '../../store/reviews';
 import { Link, useHistory } from 'react-router-dom';
-import badroman from '../../assets/badroman.webp'
+// import badroman from '../../assets/badroman.webp'
 import { convertTo12HourFormat } from '../../util/timeUtils';
 import StarAverage from '../Reviews/StarAverage';
 
