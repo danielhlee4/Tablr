@@ -1,5 +1,5 @@
 # Tablr README
-#### [Try out Tablr!](https://tablr-web-service.onrender.com/)
+#### [Try out Tablr!](https://tablr-app-6790513c2ab1.herokuapp.com/)
 
 ## Overview
 Tablr is a pixel perfect clone of [OpenTable](https://www.opentable.com/). The core functionality of Tablr allows users to browse restaurants and find/create party reservations. Additionally, a user is able to leave restaurant reviews on their completed reservations for others to see.
